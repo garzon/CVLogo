@@ -5,3 +5,4 @@
 *.bmp
 *.o
 *.pro.user
+*.pyc
