@@ -4,19 +4,26 @@
 #include <opencv2/imgproc/imgproc.hpp>
 #include "cds.h"
 using namespace std;
+using namespace cv;
 CDS cds;
 int main(int argc, char *argv[])
 {
 	QCoreApplication a(argc, argv);
-	Mat inputImage = imread("/Users/SpaceQ/Pictures/Adidas_Logo.svg.png",CV_LOAD_IMAGE_GRAYSCALE);
+//	Mat inputImage = imread("/Users/SpaceQ/Pictures/Adidas_Logo.jpg",CV_LOAD_IMAGE_GRAYSCALE);
 //	Mat inputImage = imread("/Users/SpaceQ/Pictures/AudiLogo.jpg",CV_LOAD_IMAGE_GRAYSCALE);
-	Mat testImage = imread("/Users/SpaceQ/Pictures/Adidas_4.jpg",CV_LOAD_IMAGE_GRAYSCALE);
+//	Mat testImage = imread("/Users/SpaceQ/Pictures/Adidas_4.jpg",CV_LOAD_IMAGE_GRAYSCALE);
 //	Mat testImage = imread("/Users/SpaceQ/Pictures/NewAudiQ7_1.jpg",CV_LOAD_IMAGE_GRAYSCALE);
-//	Mat inputImage = imread("/Users/SpaceQ/Pictures/HeinekenLogo_1.png",CV_LOAD_IMAGE_GRAYSCALE);
-//	Mat testImage = imread("/Users/SpaceQ/Pictures/Heineken_1.jpg",CV_LOAD_IMAGE_GRAYSCALE);
+//	Mat inputImage = imread("/Users/SpaceQ/Pictures/Heineken/HeinekenLogo_2.JPG",CV_LOAD_IMAGE_GRAYSCALE);
+//	Mat testImage = imread("/Users/SpaceQ/Pictures/Heineken/TB2Zo.KcpXXXXb_XXXXXXXXXXXX_\!\!530257868.jpg_400x400.jpg",CV_LOAD_IMAGE_GRAYSCALE);
+	Mat inputImage = imread("/Users/SpaceQ/Pictures/Intel/Intel_logo_3.jpg",CV_LOAD_IMAGE_GRAYSCALE);
+	Mat testImage = imread("/Users/SpaceQ/Pictures/Intel/TB21ACabFXXXXXgXXXXXXXXXXXX_\!\!642864513.jpg_430x430q90.jpg",CV_LOAD_IMAGE_GRAYSCALE);
 	cds.setInputImage(inputImage);
 	cds.setTestImage(testImage);
 	cout << cds.process() << endl;
 	cds.visualize();
+	cds.drawRectanglePlanB();
+	ofstream outfile("para.txt");
+	cds.writeParameters(outfile);
+	outfile.close();
 	return a.exec();
 }
