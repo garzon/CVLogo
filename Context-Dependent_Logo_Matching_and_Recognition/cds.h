@@ -45,7 +45,13 @@ public:
 	}
 
 	void extractSIFTKeyPoint();
+	void extractSIFTKeyPointX();
+	void extractSIFTKeyPointY();
+
 	void computeContext();
+	void computeContextX();
+	void computeContextY();
+
 	void computeCDSMatrix();
 	bool match();
 	void visualize();

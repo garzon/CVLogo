@@ -12,51 +12,44 @@ CDS::CDS():alpha(20),beta(20),tau(0.4),Nr(10),eps(1e-3),eeps(1e-13),
 	param = (Param){alpha, beta, tau, Nr, eps, eeps,maxtheta, maxrho, maxt,threshold, responseThresholdx,responseThresholdy, rectangleThreshold};
 }
 
-void CDS::extractSIFTKeyPoint() {
+void CDS::extractSIFTKeyPointX()
+{
 	SiftFeatureDetector sift; //此处先用默认参数
-	std::vector<KeyPoint> Sx_tmp, Sy_tmp;
+	std::vector<KeyPoint> Sx_tmp;
 	sift.detect(Ix, Sx_tmp);
-	sift.detect(Iy, Sy_tmp);
 	for(int i = 0; i < (int)Sx_tmp.size(); i++)
 	{
 		KeyPoint & key = Sx_tmp[i];
 		if(key.response > responseThresholdx)Sx.push_back(key);
 	}
+	SiftDescriptorExtractor siftDesc;//定义描述子对象
+	siftDesc.compute(Ix,Sx,Dx);//计算特征向量
+}
+
+void CDS::extractSIFTKeyPointY()
+{
+	SiftFeatureDetector sift; //此处先用默认参数
+	std::vector<KeyPoint> Sy_tmp;
+	sift.detect(Iy, Sy_tmp);
 	for(int i = 0; i < (int)Sy_tmp.size(); i++)
 	{
 		KeyPoint & key = Sy_tmp[i];
 		if(key.response > responseThresholdy)Sy.push_back(key);
 	}
-
 	SiftDescriptorExtractor siftDesc;//定义描述子对象
-
-	siftDesc.compute(Ix,Sx,Dx);//计算特征向量
-	siftDesc.compute(Iy,Sy,Dy);
-
-	D = Mat::zeros(Sx.size(),Sy.size(),CV_32FC1);
-	for(int i = 0; i < Dx.rows; i++)
-		for(int j = 0; j < Dy.rows; j++)
-		{
-			const float* px = Dx.ptr<float>(i);
-			const float* py = Dy.ptr<float>(j);
-			for(int k = 0; k < Dx.cols; k++)
-			{
-				float tmp = *px - *py;
-				D.at<float>(i,j) += tmp * tmp;
-				px++;
-				py++;
-			}
-			D.at<float>(i,j) = sqrt(D.at<float>(i,j));
-		}
+	siftDesc.compute(Iy,Sy,Dy);//计算特征向量
+}
+void CDS::extractSIFTKeyPoint() {
+	extractSIFTKeyPointX();
+	extractSIFTKeyPointY();
 }
 
-void CDS::computeContext() {
+void CDS::computeContextX()
+{
 	for(int i = 0; i < maxtheta; i++)
 		for(int j = 0; j < maxrho; j++)
-		{
 			P[i][j] = Mat::zeros(Sx.size(),Sx.size(),CV_32FC1);
-			Q[i][j] = Mat::zeros(Sy.size(),Sy.size(),CV_32FC1);
-		}
+
 	for(int i=0;i< (int) Sx.size();i++) //Sx.size() == n in the paper
 	{
 		float deltarho = (float) Sx[i].size / Nr;
@@ -72,6 +65,13 @@ void CDS::computeContext() {
 				P[theta][rho].at<float>(i,j) = 1;
 			}
 	}
+}
+
+void CDS::computeContextY()
+{
+	for(int i = 0; i < maxtheta; i++)
+		for(int j = 0; j < maxrho; j++)
+			Q[i][j] = Mat::zeros(Sy.size(),Sy.size(),CV_32FC1);
 
 	for(int i=0;i< (int) Sy.size();i++) //Sy.size() == m in the paper
 	{
@@ -90,6 +90,11 @@ void CDS::computeContext() {
 	}
 }
 
+void CDS::computeContext() {
+	computeContextX();
+	computeContextY();
+}
+
 float CDS::dist(const KeyPoint &p1, const KeyPoint &p2) const
 {
 	float deltax = p1.pt.x - p2.pt.x , deltay = p1.pt.y - p2.pt.y;
@@ -98,6 +103,21 @@ float CDS::dist(const KeyPoint &p1, const KeyPoint &p2) const
 
 void CDS::computeCDSMatrix()
 {
+	D = Mat::zeros(Sx.size(),Sy.size(),CV_32FC1);
+	for(int i = 0; i < Dx.rows; i++)
+		for(int j = 0; j < Dy.rows; j++)
+		{
+			const float* px = Dx.ptr<float>(i);
+			const float* py = Dy.ptr<float>(j);
+			for(int k = 0; k < Dx.cols; k++)
+			{
+				float tmp = *px - *py;
+				D.at<float>(i,j) += tmp * tmp;
+				px++;
+				py++;
+			}
+			D.at<float>(i,j) = sqrt(D.at<float>(i,j));
+		}
 	Mat K_history;
 	K_history = D * (-1.0 / beta);
 	for(int i = 0; i < K_history.rows; i++)
