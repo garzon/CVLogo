@@ -75,6 +75,7 @@ public:
 	 * responseThresholdx (0, 1)
 	 * responseThresholdy (0, 1)
 	 * rectangleThreshold (0, 1)
+	 * eps (0, 0.1) 判断是否收敛，关乎运行时间
 	 */
 
 
