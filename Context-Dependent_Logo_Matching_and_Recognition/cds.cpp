@@ -366,14 +366,34 @@ void CDS::readParameters(ifstream &infile)
 	infile.read(Param_char,sizeof(param));
 }
 
-void CDS::writeLogo(ofstream &outfile)
+void CDS::writeLogo(std::string path)
 {
-	char* Logo_char = (char*)&Ix;
-	outfile.write(Logo_char,sizeof(Ix));
+	imwrite(path, Ix);
+}
+
+void CDS::readLogo(std::string path)
+{
+	Ix = imread(path, CV_LOAD_IMAGE_GRAYSCALE);
 }
 
 void CDS::getSiftKeyPoint(std::vector<KeyPoint> &Sx, std::vector<KeyPoint> &Sy)
 {
 	Sx = this->Sx;
 	Sy = this->Sy;
+}
+
+void CDS::save(string path)
+{
+	ofstream paramFile(path + "_param.txt",ios::binary);
+	writeParameters(paramFile);
+	writeLogo(path + "_logo.jpg");
+	paramFile.close();
+}
+
+void CDS::load(string path)
+{
+	ifstream paramFile(path + "_param.txt",ios::binary);
+	readParameters(paramFile);
+	readLogo(path + "_logo.jpg");
+	paramFile.close();
 }

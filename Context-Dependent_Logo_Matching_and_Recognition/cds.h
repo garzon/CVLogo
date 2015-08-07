@@ -3,6 +3,7 @@
 
 //#define DEBUG
 #include <iostream>
+#include <string>
 #include <algorithm>
 #include <fstream>
 #include <vector>
@@ -59,15 +60,34 @@ public:
 		int maxtheta, maxrho, maxt;
 		float threshold, responseThresholdx,responseThresholdy, rectangleThreshold;
 	}param;
+	/* 要调的参数：
+	 * alpha [1, 500] 大概的范围，比较大，可能几十就差不多了
+	 * beta 同alpha
+	 * tau 取值范围 (0, 1)   logo中有tau这么大比例的点被匹配就算匹配成功
+	 * Nr 取值范围 (0, 500) 也是大概的范围 与圆圈半径相关
+	 * threshold (0, 1)
+	 * responseThresholdx (0, 1)
+	 * responseThresholdy (0, 1)
+	 * rectangleThreshold (0, 1)
+	 */
+
+
 	void setParameters(const Param& param);
 	Param getParameters(){return param;}
-	void writeParameters(std::ofstream &outfile);
-	void readParameters(std::ifstream &infile);
-	void writeLogo(std::ofstream &outfile);
-	void getSiftKeyPoint(std::vector<cv::KeyPoint> &Sx, std::vector<cv::KeyPoint> &Sy);
+
 	cv::Mat getInputImage() { return Ix; }
 	cv::Mat getTestImage() { return Iy; }
+
+	void getSiftKeyPoint(std::vector<cv::KeyPoint> &Sx, std::vector<cv::KeyPoint> &Sy);
 	std::vector<cv::DMatch> getMatchVec() { return matchVec;}
+
+	void load(std::string path);  //传入前缀 保存时会加上后缀 _param.txt _logo.jpg
+	void readLogo(std::string path);
+	void readParameters(std::ifstream &infile);
+
+	void save(std::string path);
+	void writeLogo(std::string path);
+	void writeParameters(std::ofstream &outfile);
 private:
 	//参数
 	float alpha, beta, tau, Nr, eps, eeps;
@@ -91,6 +111,7 @@ private:
 	int unpackSIFTOctave(const cv::KeyPoint& kpt);
 	static void callBackFuncForROI(int event, int x, int y, int flags, void* userdata);
 	static cv::Point2f ROIpt1, ROIpt2;
+
 };
 
 #endif // CDS_H
