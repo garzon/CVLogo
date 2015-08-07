@@ -4,4 +4,5 @@
 *.jpeg
 *.bmp
 *.o
-
+*.pro.user
+*.pyc
