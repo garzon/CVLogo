@@ -14,6 +14,7 @@
 //#typedef vector<DMatch> MatchSet
 class ICostFunction
 {
+public:
     virtual double costFunction(const IParams&)=0;
 };
 
