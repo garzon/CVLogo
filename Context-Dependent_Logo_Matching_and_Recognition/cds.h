@@ -18,25 +18,25 @@ class CDS
 {
 public:
 	CDS();
-	void setAlpha(float Alpha) { alpha = Alpha; }
-	void setBeta(float Beta) { beta = Beta; }
-	void setTau(float Tau) { tau = Tau; }
-	void setNr(float Nr) { this->Nr = Nr; }
-	void setEps(float Eps) { eps = Eps; }
-	void setMaxTheta(float theta) { maxtheta = theta; }
-	void setMaxRho(float rho) { maxrho = rho; }
-	float getAlpha() { return alpha; }
-	float getBeta() { return beta; }
-	float getTau() { return tau; }
-	float getNr() { return Nr; }
-	float getEps() { return eps; }
-	float getMaxTheta() { return maxtheta; }
-	float getMaxRho() { return maxrho; }
+	void setAlpha(double Alpha) { alpha = Alpha; }
+	void setBeta(double Beta) { beta = Beta; }
+	void setTau(double Tau) { tau = Tau; }
+	void setNr(double Nr) { this->Nr = Nr; }
+	void setEps(double Eps) { eps = Eps; }
+	void setMaxTheta(double theta) { maxtheta = theta; }
+	void setMaxRho(double rho) { maxrho = rho; }
+	double getAlpha() { return alpha; }
+	double getBeta() { return beta; }
+	double getTau() { return tau; }
+	double getNr() { return Nr; }
+	double getEps() { return eps; }
+	double getMaxTheta() { return maxtheta; }
+	double getMaxRho() { return maxrho; }
 
 	void setInputImage(cv::Mat inputimage)
 	{
-		float cols = 500;
-		float rows = 500.0 / inputimage.cols * inputimage.rows;
+		double cols = 500;
+		double rows = 500.0 / inputimage.cols * inputimage.rows;
 		resize(inputimage,Ix,cv::Size(cols,rows));
 	}
 	void setTestImage(cv::Mat testimage)
@@ -62,9 +62,9 @@ public:
 	//正式接口
 	struct Param
 	{
-		float alpha, beta, tau, Nr, eps, eeps;
+		double alpha, beta, tau, Nr, eps, eeps;
 		int maxtheta, maxrho, maxt;
-		float threshold, responseThresholdx,responseThresholdy, rectangleThreshold;
+		double threshold, responseThresholdx,responseThresholdy, rectangleThreshold;
 	}param;
 	/* 要调的参数：
 	 * alpha [1, 500] 大概的范围，比较大，可能几十就差不多了
@@ -97,9 +97,9 @@ public:
 	void writeParameters(std::ofstream &outfile);
 private:
 	//参数
-	float alpha, beta, tau, Nr, eps, eeps;
+	double alpha, beta, tau, Nr, eps, eeps;
 	int maxtheta, maxrho, maxt;
-	float threshold, responseThresholdx,responseThresholdy, rectangleThreshold;
+	double threshold, responseThresholdx,responseThresholdy, rectangleThreshold;
 	//result
 	std::vector<cv::KeyPoint> Sx, Sy;
 	cv::Mat Dx,Dy;//存放特征向量的矩阵
@@ -113,8 +113,8 @@ private:
 	cv::Mat showImg;
 
 	cv::Mat G(const cv::Mat &K) const;
-	float dist(const cv::KeyPoint &p1, const cv::KeyPoint &p2) const;
-	void unpackSIFTOctave(const cv::KeyPoint& kpt, int& octave, int& layer, float& scale);
+	double dist(const cv::KeyPoint &p1, const cv::KeyPoint &p2) const;
+	void unpackSIFTOctave(const cv::KeyPoint& kpt, int& octave, int& layer, double& scale);
 	int unpackSIFTOctave(const cv::KeyPoint& kpt);
 	static void callBackFuncForROI(int event, int x, int y, int flags, void* userdata);
 	static cv::Point2f ROIpt1, ROIpt2;

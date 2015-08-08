@@ -48,21 +48,21 @@ void CDS::computeContextX()
 {
 	for(int i = 0; i < maxtheta; i++)
 		for(int j = 0; j < maxrho; j++)
-			P[i][j] = Mat::zeros(Sx.size(),Sx.size(),CV_32FC1);
+			P[i][j] = Mat::zeros(Sx.size(),Sx.size(),CV_64FC1);
 
 	for(int i=0;i< (int) Sx.size();i++) //Sx.size() == n in the paper
 	{
-		float deltarho = (float) Sx[i].size / Nr;
-		float baseangle = Sx[i].angle;
-		float deltaangle = 360.0 / maxtheta;
+		double deltarho = (double) Sx[i].size / Nr;
+		double baseangle = Sx[i].angle;
+		double deltaangle = 360.0 / maxtheta;
 		for(int j = 0; j < (int) Sx.size(); j++)
 			if(i !=j && unpackSIFTOctave(Sx[i]) == unpackSIFTOctave(Sx[j]) && dist(Sx[i],Sx[j]) < maxrho * deltarho)  //此处8为硬编码，因为我也不知道这里到底该咋办
 			{
-				float tmp = Sx[j].angle - baseangle;
+				double tmp = Sx[j].angle - baseangle;
 				if(tmp < 0) tmp += 360 ; //keep tmp in [0, 2*PI]
 				int theta = (int) (tmp / deltaangle);
 				int rho = (int) ( (dist(Sx[i],Sx[j])) / deltarho );
-				P[theta][rho].at<float>(i,j) = 1;
+				P[theta][rho].at<double>(i,j) = 1;
 			}
 	}
 }
@@ -71,21 +71,21 @@ void CDS::computeContextY()
 {
 	for(int i = 0; i < maxtheta; i++)
 		for(int j = 0; j < maxrho; j++)
-			Q[i][j] = Mat::zeros(Sy.size(),Sy.size(),CV_32FC1);
+			Q[i][j] = Mat::zeros(Sy.size(),Sy.size(),CV_64FC1);
 
 	for(int i=0;i< (int) Sy.size();i++) //Sy.size() == m in the paper
 	{
-		float deltarho = (float) Sy[i].size / Nr;
-		float baseangle = Sy[i].angle;
-		float deltaangle = 360.0 / maxtheta;
+		double deltarho = (double) Sy[i].size / Nr;
+		double baseangle = Sy[i].angle;
+		double deltaangle = 360.0 / maxtheta;
 		for(int j = 0; j < (int) Sy.size(); j++)
 			if(i != j && unpackSIFTOctave(Sy[i]) == unpackSIFTOctave(Sy[j]) && dist(Sy[i],Sy[j]) < maxrho * deltarho)  //此处8为硬编码，因为我也不知道这里到底该咋办
 			{
-				float tmp = Sy[j].angle - baseangle;
+				double tmp = Sy[j].angle - baseangle;
 				if(tmp < 0) tmp += 360 ; //keep tmp in [0, 2*PI]
 				int theta = (int) (tmp / deltaangle);
 				int rho = (int) ( (dist(Sy[i],Sy[j])) / deltarho );
-				Q[theta][rho].at<float>(i,j) = 1;
+				Q[theta][rho].at<double>(i,j) = 1;
 			}
 	}
 }
@@ -95,15 +95,15 @@ void CDS::computeContext() {
 	computeContextY();
 }
 
-float CDS::dist(const KeyPoint &p1, const KeyPoint &p2) const
+double CDS::dist(const KeyPoint &p1, const KeyPoint &p2) const
 {
-	float deltax = p1.pt.x - p2.pt.x , deltay = p1.pt.y - p2.pt.y;
+	double deltax = p1.pt.x - p2.pt.x , deltay = p1.pt.y - p2.pt.y;
 	return sqrt(deltax*deltax + deltay*deltay);
 }
 
 void CDS::computeCDSMatrix()
 {
-	D = Mat::zeros(Sx.size(),Sy.size(),CV_32FC1);
+	D = Mat::zeros(Sx.size(),Sy.size(),CV_64FC1);
 	for(int i = 0; i < Dx.rows; i++)
 		for(int j = 0; j < Dy.rows; j++)
 		{
@@ -111,18 +111,18 @@ void CDS::computeCDSMatrix()
 			const float* py = Dy.ptr<float>(j);
 			for(int k = 0; k < Dx.cols; k++)
 			{
-				float tmp = *px - *py;
-				D.at<float>(i,j) += tmp * tmp;
+				double tmp = *px - *py;
+				D.at<double>(i,j) += tmp * tmp;
 				px++;
 				py++;
 			}
-			D.at<float>(i,j) = sqrt(D.at<float>(i,j));
+			D.at<double>(i,j) = sqrt(D.at<double>(i,j));
 		}
 	Mat K_history;
 	K_history = D * (-1.0 / beta);
 	for(int i = 0; i < K_history.rows; i++)
 	{
-		float* now = K_history.ptr<float>(i);
+		double* now = K_history.ptr<double>(i);
 		for(int j = 0; j < K_history.cols; j++)
 		{
 			(*now) = exp(*now);
@@ -155,7 +155,7 @@ void CDS::computeCDSMatrix()
 
 Mat CDS::G(const Mat &K)const
 {
-	Mat ret(Sx.size(), Sy.size(), CV_32FC1);
+	Mat ret(Sx.size(), Sy.size(), CV_64FC1);
 	for(int theta = 0; theta < maxtheta; theta++)
 		for(int rho = 0; rho < maxrho; rho++)
 		{
@@ -166,7 +166,7 @@ Mat CDS::G(const Mat &K)const
 
 	for(int i = 0; i < ret.rows; i++)
 	{
-		float* now = ret.ptr<float>(i);
+		double* now = ret.ptr<double>(i);
 		for(int j = 0; j < ret.cols; j++)
 		{
 			(*now) = exp(*now);
@@ -180,53 +180,53 @@ Mat CDS::G(const Mat &K)const
 
 bool CDS::match()
 {
-	Kp = Mat(Sx.size(),Sy.size(),CV_32FC1); //条件概率 j|i
-	vector<float> sumK;  //当x=i时的和
+	Kp = Mat(Sx.size(),Sy.size(),CV_64FC1); //条件概率 j|i
+	vector<double> sumK;  //当x=i时的和
 	sumK.clear();
 	for(int i = 0; i < (int)Sx.size(); i++)
 	{
 		sumK.push_back(0);
 		for(int j = 0; j < (int)Sy.size(); j++)
 		{
-			sumK[i] +=  K.at<float>(i,j);
+			sumK[i] +=  K.at<double>(i,j);
 		}
 	}
 
 	for(int i = 0; i < (int)Sx.size(); i++)
 		for(int j = 0; j < (int)Sy.size(); j++)
 		{
-			Kp.at<float>(i,j) = K.at<float>(i,j) / sumK[i];
+			Kp.at<double>(i,j) = K.at<double>(i,j) / sumK[i];
 		}
 	matchY.clear();
 
-	vector<float> sumKp;
+	vector<double> sumKp;
 	for(int i = 0; i < (int)Sx.size(); i++)
 	{
 		sumKp.push_back(0);
 		for(int  j = 0; j < (int)Sy.size(); j++)
-			sumKp[i] += Kp.at<float>(i,j);
+			sumKp[i] += Kp.at<double>(i,j);
 	}
 
 	for(int i = 0; i < (int)Sx.size(); i++)
 		for(int j = 0; j < (int)Sy.size(); j++)
-			if(Kp.at<float>(i,j) >= sumKp[i] * threshold)
+			if(Kp.at<double>(i,j) >= sumKp[i] * threshold)
 			{
-				matchVec.push_back(DMatch(i,j,0,Kp.at<float>(i,j) / sumKp[i]));
+				matchVec.push_back(DMatch(i,j,0,Kp.at<double>(i,j) / sumKp[i]));
 				if(matchY.find(j) == matchY.end()) matchY.insert(j);
 			}
 	cout << "match pair = " << matchY.size() <<endl;
 	cout << "key_point_num = " << Sx.size() << endl;
-	cout << "maxTau = " << matchY.size() << "/" << Sx.size() << " = " << (float) matchY.size() / Sx.size() << endl;
+	cout << "maxTau = " << matchY.size() << "/" << Sx.size() << " = " << (double) matchY.size() / Sx.size() << endl;
 	if(matchY.size() > tau * Sx.size()) return true;
 	return false;
 }
 
-void CDS::unpackSIFTOctave(const KeyPoint& kpt, int& octave, int& layer, float& scale)
+void CDS::unpackSIFTOctave(const KeyPoint& kpt, int& octave, int& layer, double &scale)
 {
 	octave = kpt.octave & 255;
 	layer = (kpt.octave >> 8) & 255;
 	octave = octave < 128 ? octave : (-128 | octave);
-	scale = octave >= 0 ? 1.f/(1 << octave) : (float)(1 << -octave);
+	scale = octave >= 0 ? 1.f/(1 << octave) : (double)(1 << -octave);
 }
 
 int CDS::unpackSIFTOctave(const KeyPoint &kpt)
@@ -290,7 +290,7 @@ void CDS::drawRectanglePlanA()
 	for(int i = 0; i < (int)matchVec.size(); i++) if(matchVec[i].distance > rectangleThreshold)
 	{
 		cout << i << endl;
-		float upx, downx, leftx, rightx, upy, downy, lefty, righty;
+		double upx, downx, leftx, rightx, upy, downy, lefty, righty;
 		const KeyPoint &Px = Sx[matchVec[i].queryIdx], &Py = Sy[matchVec[i].trainIdx];
 
 		upx = Px.pt.y;
@@ -298,7 +298,7 @@ void CDS::drawRectanglePlanA()
 		downx = Ix.rows - upx;
 		rightx = Ix.cols - leftx;
 
-		float ratio = Py.size / Px.size;
+		double ratio = Py.size / Px.size;
 		upy    = ratio * upx;
 		lefty  = ratio * leftx;
 		downy  = ratio * downx;
@@ -322,7 +322,7 @@ void CDS::drawRectanglePlanA()
 
 void CDS::drawRectanglePlanB()
 {
-	float maxdistance = 0;
+	double maxdistance = 0;
 	int id;
 	for(int i = 0; i < (int)matchVec.size(); i++)
 		if(matchVec[i].distance > maxdistance)
@@ -333,7 +333,7 @@ void CDS::drawRectanglePlanB()
 
 	cout << id << endl;
 
-	float upx, downx, leftx, rightx, upy, downy, lefty, righty;
+	double upx, downx, leftx, rightx, upy, downy, lefty, righty;
 	const KeyPoint &Px = Sx[matchVec[id].queryIdx], &Py = Sy[matchVec[id].trainIdx];
 
 	upx = Px.pt.y;
@@ -341,7 +341,7 @@ void CDS::drawRectanglePlanB()
 	downx = Ix.rows - upx;
 	rightx = Ix.cols - leftx;
 
-	float ratio = Py.size / Px.size;
+	double ratio = Py.size / Px.size;
 	upy    = ratio * upx;
 	lefty  = ratio * leftx;
 	downy  = ratio * downx;
