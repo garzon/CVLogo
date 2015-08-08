@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
 	cds.setTestImage(testImage);
 	cout << cds.process() << endl;
 	cds.visualize();
-	cds.drawRectanglePlanB();
+	cds.drawRectanglePlanA();
 	ofstream outfile("para.txt");
 	cds.writeParameters(outfile);
 	outfile.close();
