@@ -6,3 +6,4 @@
 *.o
 *.pro.user
 *.pyc
+main.cpp
