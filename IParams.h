@@ -7,7 +7,7 @@ class IParams
 {
 public:
     std::vector<double> params;
-    static const std::vector<std::pair<double,double> > paramRange;
+    std::vector<std::pair<double,double> > paramRange;
 };
 
 

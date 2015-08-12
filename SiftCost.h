@@ -8,16 +8,21 @@
 //#include<cstring>
 #include <stdexcept>
 #include<opencv2/features2d/features2d.hpp>
+#include <opencv2/core/core.hpp>
+#include <opencv2/highgui/highgui.hpp>
+#include <opencv2/nonfree/features2d.hpp>
+#include <opencv2/imgproc/imgproc.hpp>
 
 #include "SiftParams.h"
 #include "ICostFunction.h"
-#include "CDS.h"
+#include "cds.h"
 
-#ifndef eps
-#define eps 0.000001
+#ifndef Eps
+#define Eps 0.000001
 #endif // eps
-//#ifndef maxProportation 100000
-
+#ifndef maxProportation
+#define maxProportation 100000
+#endif // maxProportation
 /*
 使用方法：
 创建SiftCost实体对象，随意用哪个构造函数。支持SiftCost对象数组的创建（即有默认构造函数）
@@ -57,16 +62,20 @@ protected:
     double distanceX(int index,int i,int j);                                //index代表第几个训练集。计算第i对匹配点对、第j对匹配点对在Logo上的距离。
     double distanceY(int index,int i,int j);                              //计算第i对匹配点对、第j对匹配点对在训练集上的距离。
 
+    cv::Mat logo;                       //装logo的图像
     std::vector<cv::KeyPoint> Sx;            //商标图的特征点集
     std::vector<std::vector<cv::KeyPoint> > Sys;           //训练集的特征点集构成的vector   vector<KeyPoint>本质是一幅图的特征点集合
     std::vector<std::vector<cv::DMatch> > matchs;      //vector<DMatch>
-    CDS cds;
+    std::vector<CDS*> cds;
+
 
     double toleranceOfNoMatch;
 
     bool logoExists;
     int keyPointNum;
     int trainSetNum;
+
+    bool pictureUpdate;
 };
 /*
 #pragma omp parallel for
