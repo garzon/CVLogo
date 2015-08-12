@@ -4,6 +4,8 @@ using namespace cv;
 CDS::CDS():alpha(20),beta(20),tau(0.4),Nr(10),eps(1e-3),eeps(1e-13),
 	maxtheta(16),maxrho(16),maxt(30),threshold(0.90),responseThresholdx(0.09),responseThresholdy(0.05),rectangleThreshold(0.95)
 {
+	P.clear();
+	Q.clear();
 	for(int i = 0; i < maxtheta; i++)
 	{
 		P.push_back(vector<Mat>(maxrho));
@@ -15,12 +17,14 @@ CDS::CDS():alpha(20),beta(20),tau(0.4),Nr(10),eps(1e-3),eeps(1e-13),
 void CDS::extractSIFTKeyPointX()
 {
 	SiftFeatureDetector sift; //此处先用默认参数
+	Sx_all.clear();
 	sift.detect(Ix, Sx_all);
 }
 
 void CDS::extractSIFTKeyPointY()
 {
 	SiftFeatureDetector sift; //此处先用默认参数
+	Sy_all.clear();
 	sift.detect(Iy, Sy_all);
 }
 void CDS::extractSIFTKeyPoint() {
@@ -30,6 +34,7 @@ void CDS::extractSIFTKeyPoint() {
 
 void CDS::computeContextX()
 {
+	Sx.clear();
 	for(int i = 0; i < (int)Sx_all.size(); i++)
 	{
 		KeyPoint & key = Sx_all[i];
@@ -61,6 +66,7 @@ void CDS::computeContextX()
 
 void CDS::computeContextY()
 {
+	Sy.clear();
 	for(int i = 0; i < (int)Sy_all.size(); i++)
 	{
 		KeyPoint & key = Sy_all[i];
@@ -200,6 +206,7 @@ bool CDS::match()
 	matchY.clear();
 
 	vector<double> sumKp;
+	sumKp.clear();
 	for(int i = 0; i < (int)Sx.size(); i++)
 	{
 		sumKp.push_back(0);
@@ -207,6 +214,7 @@ bool CDS::match()
 			sumKp[i] += Kp.at<double>(i,j);
 	}
 
+	matchVec.clear();
 	for(int i = 0; i < (int)Sx.size(); i++)
 		for(int j = 0; j < (int)Sy.size(); j++)
 			if(Kp.at<double>(i,j) >= sumKp[i] * threshold)
