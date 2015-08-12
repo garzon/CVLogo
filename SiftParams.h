@@ -1,12 +1,13 @@
 #ifndef SIFTPARAMS_h
 #define SIFTPARAMS_h
 #include <vector>
+#include <iostream>
 
 #include "IParams.h"
 class SiftParams:public IParams{
 public:
     SiftParams();
-    SiftParams( std::vector<double>& _params);
+    SiftParams(const std::vector<double>& _params);
     SiftParams(double,double,double,double,double,double,double,double);//8个double。8个参数。
 };
 

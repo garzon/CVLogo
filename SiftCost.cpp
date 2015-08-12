@@ -1,9 +1,13 @@
 
 #include "SiftCost.h"
+//#define DEBUG
 
 //下面一部分是SiftCost的核心接口costFunction(...)以及其具体实现所用到的几个函数
-double SiftCost::costFunction(const SiftParams& siftParams)
+double SiftCost::costFunction(const IParams& siftParams)
 {
+#ifdef DEBUG
+    std::cout<<trainSetNum<<" "<<logoExists<<std::endl;
+#endif
     if(trainSetNum<=0){
         std::cout<<"Error in SiftCost::costFunction:"<<std::endl<<"No training set!"<<std::endl;
         throw std::runtime_error("In SiftCost::costFunction: No training set");
@@ -37,16 +41,43 @@ double SiftCost::costFunction(const SiftParams& siftParams)
         cds[i]->param.maxtheta=16;
         cds[i]->param.maxrho=16;
         cds[i]->param.maxt=30;
+        cds[i]->setParameters(cds[i]->param);
+#ifdef DEBUG
+        std::cout<<"params converting finished!"<<std::endl;
+#endif
         cds[i]->computeContextX();
         cds[i]->computeContextY();
+#ifdef DEBUG
+        std::cout<<"Context computing finished!"<<std::endl;
+#endif
         cds[i]->computeCDSMatrix();
-        if(!cds[i]->match()) cost+=1000;//////////////////////////////////////////////////////////////////////////这里要改！
+#ifdef DEBUG
+        std::cout<<"CDSMatrix computing finished!"<<std::endl;
+#endif
+        if(!cds[i]->match()) {
+            cost+=1000;//这里要改！!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#ifdef DEBUG
+            std::cout<<"not match in match "<<i<<":"<<std::endl;
+#endif
+        }
+#ifdef DEBUG
+        std::cout<<"matching finished!"<<std::endl;
+#endif
+        matchs.resize(trainSetNum);
         matchs[i]=cds[i]->getMatchVec();
+#ifdef DEBUG
+        std::cout<<"getting matchVec finished!"<<std::endl;
+#endif
     }
     if(pictureUpdate){
+        Sys.resize(trainSetNum);
         for(int i=0;i<trainSetNum;i++) {
             cds[i]->getSiftKeyPoint(Sx,Sys[i]);
         }
+        pictureUpdate=false;
+#ifdef DEBUG
+        std::cout<<"Picture update finished!"<<std::endl;
+#endif
     }
     //计算匹配点对matchs
 
@@ -54,41 +85,66 @@ double SiftCost::costFunction(const SiftParams& siftParams)
     for(int i=0;i<trainSetNum;i++){
         cost+=(costOfNoMatch(i)+costOfWrongMatch(i));       //costOfWrongMatch(i)应该会比较耗时。可以并行。
     }
+#ifdef DEBUG
+        for(int i=0;i<trainSetNum;i++){cds[i]->visualize();}
+#endif
     return cost;
 }
 
 double SiftCost::costOfNoMatch(int index)                                           //这里是一个纯数学的函数。本质是代价函数中的一项的实现
 {
+    double cost=0.0;
     int nomatch=keyPointNum-matchs[index].size();
-    if (nomatch<=keyPointNum*toleranceOfNoMatch) return 0;
-    return pow(nomatch-keyPointNum*toleranceOfNoMatch,2);
+    if (nomatch<=keyPointNum*toleranceOfNoMatch) cost=0;
+    else cost=pow(nomatch-keyPointNum*toleranceOfNoMatch,2);
+#ifdef DEBUG
+    std::cout<<"costOfNoMatch in match "<<index<<":"<<cost<<std::endl;
+#endif
+    return cost;
 }
 
 double SiftCost::costOfWrongMatch(int index)                                //这里是一个纯数学的函数。本质是代价函数中的一项的实现
 {
     double cost=0.0;
     int n=matchs[index].size();
-    double*  proportion=new double[n*(n-1)/2];      //这个数组里装的是dis(xi,yi)和dis(xj,yj)的比例
+#ifdef DEBUG
+    std::cout<<"num of matchs "<<index<<":"<<matchs[index].size()<<std::endl;
+#endif
+    double*  proportion= NULL;
+    proportion = new double[n*(n-1)/2];      //这个数组里装的是dis(xi,yi)和dis(xj,yj)的比例
     double disX,disY;       //装dis(xi,xj),dis(yi,yj)的临时变量
     for(int i=0;i<n;i++){
         for(int j=0;j<i;j++){
+#ifdef DEBUG
+            //std::cout<<"param now:"<<i*(i-1)/2+j<<":"<<std::endl;
+#endif
             disX=distanceX(index,i,j);
             disY=distanceY(index,i,j);
-            if(disX<Eps&&disY<Eps)  proportion[i*(i-1)/2+j+1]=1;
-            else if (disX<Eps||disY<Eps) proportion[i*(i-1)/2+j+1]=maxProportation;
+            if(disX<Eps&&disY<Eps)  proportion[i*(i-1)/2+j]=1;
+            else if (disX<Eps||disY<Eps) proportion[i*(i-1)/2+j]=maxProportation;
             else{
-                double temp;
+            double temp;
                 if(disX<disY) temp=disX/disY;
-                temp=disY/disX;
-                if (temp<maxProportation) proportion[i*(i-1)/2+j+1]=temp;
-                else proportion[i*(i-1)/2+j+1]=maxProportation;     //这条分支几乎不会出现。只是为了程序的鲁棒性。
+                else temp=disY/disX;
+                //std::cout << temp << '  ' << i*(i-1)/2+j<< std::endl;
+                if (temp<maxProportation) proportion[i*(i-1)/2+j]=temp;
+                else proportion[i*(i-1)/2+j]=maxProportation;     //这条分支几乎不会出现。只是为了程序的鲁棒性。
             }
         }
     }
+#ifdef DEBUG
+    std::cout<<"Succeed in contracting proportion in match"<<index<<std::endl;
+#endif
     double sum=0;
     for(int i=0;i<n*(n-1)/2;i++) sum+=proportion[i];
-    for(int i=0;i<n*(n-1)/2;i++) proportion[i]/=sum;        //这行和上一行使proportion均值为1
+    sum/=n*(n-1)/2;
+    for(int i=0;i<n*(n-1)/2;i++) proportion[i]/=sum;        //这行和上2行使proportion均值为1
     for(int i=0;i<n*(n-1)/2;i++) cost+=std::abs(1-proportion[i]);
+#ifdef DEBUG
+    std::cout<<"costOfWrongMatch in match "<<index<<":"<<cost<<std::endl;
+#endif
+    delete[] proportion;
+    //std::cout<<"!" << std::endl;
     return cost;
 }
 
@@ -178,25 +234,25 @@ bool SiftCost::setLogo(std::string logoAdd)
         cds[i]->setInputImage(logo);
         cds[i]->extractSIFTKeyPointX();
     }
-    //pictureUpdate=true;
+   pictureUpdate=true;
     return true;
 }
 
 //构造函数
-SiftCost::SiftCost(double _toleranceOfNoMatch=0.25):
+SiftCost::SiftCost(double _toleranceOfNoMatch):
     keyPointNum(0),trainSetNum(0),logoExists(false),pictureUpdate(false)
 {
     setTolerance(_toleranceOfNoMatch);
 }
 
-SiftCost::SiftCost(const std::vector<std::string>& trainSets,std::string logo,double _toleranceOfNoMatch=0.25):
+SiftCost::SiftCost(const std::vector<std::string>& trainSets,std::string logo,double _toleranceOfNoMatch):
     keyPointNum(0),trainSetNum(0),logoExists(false),pictureUpdate(false)
 {
     setTolerance(_toleranceOfNoMatch);
     addTrainSet(trainSets);
     setLogo(logo);
 }
-SiftCost::SiftCost(std::string trainSet,std::string logo,double _toleranceOfNoMatch=0.25):
+SiftCost::SiftCost(std::string trainSet,std::string logo,double _toleranceOfNoMatch):
     keyPointNum(0),trainSetNum(0),logoExists(false),pictureUpdate(false)
 {
     setTolerance(_toleranceOfNoMatch);
@@ -204,5 +260,9 @@ SiftCost::SiftCost(std::string trainSet,std::string logo,double _toleranceOfNoMa
     setLogo(logo);
 }
 
+SiftCost::~SiftCost(){
+    for(int i=0;i<trainSetNum;i++)
+        delete cds[i];
+}
 
-//int main(){return 0;}
+

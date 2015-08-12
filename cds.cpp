@@ -4,6 +4,8 @@ using namespace cv;
 CDS::CDS():alpha(20),beta(20),tau(0.4),Nr(10),eps(1e-3),eeps(1e-13),
 	maxtheta(16),maxrho(16),maxt(30),threshold(0.90),responseThresholdx(0.09),responseThresholdy(0.05),rectangleThreshold(0.95)
 {
+	P.clear();
+	Q.clear();
 	for(int i = 0; i < maxtheta; i++)
 	{
 		P.push_back(vector<Mat>(maxrho));
@@ -15,29 +17,15 @@ CDS::CDS():alpha(20),beta(20),tau(0.4),Nr(10),eps(1e-3),eeps(1e-13),
 void CDS::extractSIFTKeyPointX()
 {
 	SiftFeatureDetector sift; //此处先用默认参数
-	std::vector<KeyPoint> Sx_tmp;
-	sift.detect(Ix, Sx_tmp);
-	for(int i = 0; i < (int)Sx_tmp.size(); i++)
-	{
-		KeyPoint & key = Sx_tmp[i];
-		if(key.response > responseThresholdx)Sx.push_back(key);
-	}
-	SiftDescriptorExtractor siftDesc;//定义描述子对象
-	siftDesc.compute(Ix,Sx,Dx);//计算特征向量
+	Sx_all.clear();
+	sift.detect(Ix, Sx_all);
 }
 
 void CDS::extractSIFTKeyPointY()
 {
 	SiftFeatureDetector sift; //此处先用默认参数
-	std::vector<KeyPoint> Sy_tmp;
-	sift.detect(Iy, Sy_tmp);
-	for(int i = 0; i < (int)Sy_tmp.size(); i++)
-	{
-		KeyPoint & key = Sy_tmp[i];
-		if(key.response > responseThresholdy)Sy.push_back(key);
-	}
-	SiftDescriptorExtractor siftDesc;//定义描述子对象
-	siftDesc.compute(Iy,Sy,Dy);//计算特征向量
+	Sy_all.clear();
+	sift.detect(Iy, Sy_all);
 }
 void CDS::extractSIFTKeyPoint() {
 	extractSIFTKeyPointX();
@@ -46,6 +34,15 @@ void CDS::extractSIFTKeyPoint() {
 
 void CDS::computeContextX()
 {
+	Sx.clear();
+	for(int i = 0; i < (int)Sx_all.size(); i++)
+	{
+		KeyPoint & key = Sx_all[i];
+		if(key.response > responseThresholdx)Sx.push_back(key);
+	}
+	SiftDescriptorExtractor siftDesc;//定义描述子对象
+	siftDesc.compute(Ix,Sx,Dx);//计算特征向量
+
 	for(int i = 0; i < maxtheta; i++)
 		for(int j = 0; j < maxrho; j++)
 			P[i][j] = Mat::zeros(Sx.size(),Sx.size(),CV_64FC1);
@@ -69,6 +66,15 @@ void CDS::computeContextX()
 
 void CDS::computeContextY()
 {
+	Sy.clear();
+	for(int i = 0; i < (int)Sy_all.size(); i++)
+	{
+		KeyPoint & key = Sy_all[i];
+		if(key.response > responseThresholdy)Sy.push_back(key);
+	}
+	SiftDescriptorExtractor siftDesc;//定义描述子对象
+	siftDesc.compute(Iy,Sy,Dy);//计算特征向量
+
 	for(int i = 0; i < maxtheta; i++)
 		for(int j = 0; j < maxrho; j++)
 			Q[i][j] = Mat::zeros(Sy.size(),Sy.size(),CV_64FC1);
@@ -200,6 +206,7 @@ bool CDS::match()
 	matchY.clear();
 
 	vector<double> sumKp;
+	sumKp.clear();
 	for(int i = 0; i < (int)Sx.size(); i++)
 	{
 		sumKp.push_back(0);
@@ -207,6 +214,7 @@ bool CDS::match()
 			sumKp[i] += Kp.at<double>(i,j);
 	}
 
+	matchVec.clear();
 	for(int i = 0; i < (int)Sx.size(); i++)
 		for(int j = 0; j < (int)Sy.size(); j++)
 			if(Kp.at<double>(i,j) >= sumKp[i] * threshold)
@@ -404,7 +412,7 @@ void CDS::getSiftKeyPoint(std::vector<KeyPoint> &Sx, std::vector<KeyPoint> &Sy)
 
 void CDS::save(string path)
 {
-	ofstream paramFile(path + "_param.txt",ios::binary);
+    ofstream paramFile((path + "_param.txt").c_str(),ios::binary);
 	writeParameters(paramFile);
 	writeLogo(path + "_logo.jpg");
 	paramFile.close();
@@ -412,7 +420,7 @@ void CDS::save(string path)
 
 void CDS::load(string path)
 {
-	ifstream paramFile(path + "_param.txt",ios::binary);
+    ifstream paramFile((path + "_param.txt").c_str(),ios::binary);
 	readParameters(paramFile);
 	readLogo(path + "_logo.jpg");
 	paramFile.close();

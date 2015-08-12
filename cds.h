@@ -101,6 +101,7 @@ private:
 	int maxtheta, maxrho, maxt;
 	double threshold, responseThresholdx,responseThresholdy, rectangleThreshold;
 	//result
+	std::vector<cv::KeyPoint> Sx_all, Sy_all;
 	std::vector<cv::KeyPoint> Sx, Sy;
 	cv::Mat Dx,Dy;//存放特征向量的矩阵
 	cv::Mat Ix,Iy;

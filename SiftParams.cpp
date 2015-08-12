@@ -15,7 +15,7 @@
 SiftParams::SiftParams(const std::vector<double>& _params)
 {
     if(_params.size()!=8) std::cout<<"Warning! Number of params  is not suitable!"<<std::endl;
-    if(_params.size)
+    if(_params.size())
     paramRange.push_back(std::make_pair(1.0,500.0));        //alpha
     paramRange.push_back(std::make_pair(1.0,500.0));        //beta
     paramRange.push_back(std::make_pair(0.0,1.0));              //tau

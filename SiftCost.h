@@ -1,6 +1,7 @@
 #ifndef SIFTCOST_h
 #define SIFTCOST_h
 
+//#define DEBUG
 
 #include <iostream>
 #include <cmath>
@@ -35,11 +36,11 @@ class SiftCost:public ICostFunction
 {
 public:
     //构造函数
-    SiftCost(const std::vector<std::string>& trainSets,std::string logo,double _toleranceOfNoMatch);         //double _toleranceOfNoMatch有默认值0.25
-    SiftCost(double _toleranceOfNoMatch);           //double _toleranceOfNoMatch有默认值0.25
-    SiftCost(std::string trainSet,std::string logo,double _toleranceOfNoMatch);                  //double _toleranceOfNoMatch有默认值0.25
+    SiftCost(const std::vector<std::string>& trainSets,std::string logo,double _toleranceOfNoMatch=0.25);         //double _toleranceOfNoMatch有默认值0.25
+    SiftCost(double _toleranceOfNoMatch=0.25);           //double _toleranceOfNoMatch有默认值0.25
+    SiftCost(std::string trainSet,std::string logo,double _toleranceOfNoMatch=0.25);                  //double _toleranceOfNoMatch有默认值0.25
     //核心功能接口：costFunction(...)
-    virtual double costFunction(const SiftParams&);
+    virtual double costFunction(const IParams&);
 
     //对训练集的操作
     int addTrainSet(std::string trainSet);                                                                  //返回成功读入的训练图像的数量
@@ -76,6 +77,8 @@ protected:
     int trainSetNum;
 
     bool pictureUpdate;
+
+    ~SiftCost();
 };
 /*
 #pragma omp parallel for
