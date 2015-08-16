@@ -6,15 +6,15 @@
 #include <vector>
 //#include<cstring>
 #include <stdexcept>
-#include<opencv2/features2d/features2d.hpp>
+#include <opencv2/features2d/features2d.hpp>
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/nonfree/features2d.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
 
 #include "SiftParams.h"
-#include "ICostFunction.h"
-#include "cds.h"
+#include "../pso/ICostFunction.h"
+#include "../../cds/cds.h"
 
 #ifndef Eps
 #define Eps 0.000001
@@ -31,8 +31,7 @@
 后来传入的方式见“对训练集的操作”和“对Logo的操作“两部分。
 */
 
-class SiftCost:public ICostFunction
-{
+class SiftCost: public ICostFunction<SiftParams> {
 public:
     //构造函数
     SiftCost(const std::vector<std::string>& trainSets,std::string logo,double _toleranceOfNoMatch=0.25);         //double _toleranceOfNoMatch有默认值0.25
@@ -40,7 +39,7 @@ public:
     SiftCost(std::string trainSet,std::string logo,double _toleranceOfNoMatch=0.25);                  //double _toleranceOfNoMatch有默认值0.25
 
     //核心功能接口：costFunction(...)
-    virtual double costFunction(const IParams&);
+	virtual double costFunction(const SiftParams&);
 
     //对训练集的操作
     int addTrainSet(std::string trainSet);                                                                  //返回成功读入的训练图像的数量
@@ -81,13 +80,6 @@ protected:
 
     bool pictureUpdate;
 
-
 };
-/*
-#pragma omp parallel for
-for(int i=0; i<100; i++)
-    a[i]=0
-
-*/
 
 #endif // SIFTCOST_h

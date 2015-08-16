@@ -23,7 +23,7 @@ dimension只能传入一次，不允许改动。不允许为负数。
 getSolution()用于获取最优解。
 */
 
-class LeastSquareMethod{
+class LeastSquareMethod {
 public:
     LeastSquareMethod();
     LeastSquareMethod(int _dimension);          //_dimension:矛盾方程组的维数（未知数个数）

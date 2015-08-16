@@ -11,7 +11,8 @@ CDS::CDS():alpha(20),beta(20),tau(0.4),Nr(10),eps(1e-3),eeps(1e-13),
 		P.push_back(vector<Mat>(maxrho));
 		Q.push_back(vector<Mat>(maxrho));
 	}
-	param = (Param){alpha, beta, tau, Nr, eps, eeps,maxtheta, maxrho, maxt,threshold, responseThresholdx,responseThresholdy, rectangleThreshold};
+	Param tmp{alpha, beta, tau, Nr, eps, eeps,maxtheta, maxrho, maxt,threshold, responseThresholdx,responseThresholdy, rectangleThreshold};
+	param = tmp;
 }
 
 void CDS::extractSIFTKeyPointX()
@@ -264,7 +265,7 @@ void CDS::visualize()
 	//resize(showImg,showImg,Size(showImg.cols*2.5,showImg.rows*2.5));
 	drawMatches(Ix, Sx, Iy, Sy, matchVec, showImg);
 	imshow("showImg", showImg);
-    waitKey(-1);
+	waitKey(1000);
 }
 
 
@@ -412,7 +413,7 @@ void CDS::getSiftKeyPoint(std::vector<KeyPoint> &Sx, std::vector<KeyPoint> &Sy)
 
 void CDS::save(string path)
 {
-    ofstream paramFile((path + "_param.txt").c_str(),ios::binary);
+	ofstream paramFile(path + "_param.txt",ios::binary);
 	writeParameters(paramFile);
 	writeLogo(path + "_logo.jpg");
 	paramFile.close();
@@ -420,7 +421,7 @@ void CDS::save(string path)
 
 void CDS::load(string path)
 {
-    ifstream paramFile((path + "_param.txt").c_str(),ios::binary);
+	ifstream paramFile(path + "_param.txt",ios::binary);
 	readParameters(paramFile);
 	readLogo(path + "_logo.jpg");
 	paramFile.close();
