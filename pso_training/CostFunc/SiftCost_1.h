@@ -12,7 +12,7 @@
 本质上和SiftCost的接口一模一样。
 */
 
-class SiftCost_1:public SiftCost
+class SiftCost_1: public SiftCost
 {
 public:
     SiftCost_1(const std::vector<std::string>& trainSets,std::string logo,double _toleranceOfNoMatch=0.25);         //double _toleranceOfNoMatch有默认值0.25

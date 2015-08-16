@@ -3,7 +3,7 @@
 //#define DEBUG
 
 //下面一部分是SiftCost的核心接口costFunction(...)以及其具体实现所用到的几个函数
-double SiftCost::costFunction(const IParams& siftParams)
+double SiftCost::costFunction(const SiftParams& siftParams)
 {
 #ifdef DEBUG
     std::cout<<trainSetNum<<" "<<logoExists<<std::endl;
