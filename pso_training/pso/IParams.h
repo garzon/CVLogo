@@ -23,7 +23,7 @@ public:
 
 	cv::Mat toMat() const {
 		cv::Mat res(0, 0, CV_64F);
-		for (auto i : params) res.push_back(i);
+        for (auto i : params) res.push_back(i);
 		res = res.reshape(1, params.size());
 		return res;
 	}

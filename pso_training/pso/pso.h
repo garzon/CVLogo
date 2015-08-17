@@ -16,7 +16,7 @@ class Pso
 	const int particle_num, generation, kmeans_generation, kmeans_k;
 	std::pair<double, cv::Mat> *swarm_best_position;
 	cv::Mat last_best_position;
-	std::vector<Particle<ParamsType>> particles;
+    std::vector<Particle<ParamsType> > particles;
 	int *swarm_id_of_particles;
 	double best_cost;
 	cv::Mat *kmeans_centroid;
