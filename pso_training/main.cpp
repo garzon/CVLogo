@@ -5,11 +5,12 @@
 using namespace std;
 
 int main() {
-	vector<string> trainingSet = { "d:/CVLogo/1.jpg", "d:/CVLogo/2.jpg", "d:/CVLogo/3.jpg", "d:/CVLogo/4.jpg" };
-	SiftCost func1(trainingSet, "d:/CVLogo/logo.jpg");
+	vector<string> trainingSet = { "1.jpeg", "2.jpeg", "3.jpeg", "4.jpeg" };
+	SiftCost func1(trainingSet, "logo.jpeg");
 	Pso<SiftCost> pso(func1);
 	SiftParams best_params = pso.solve();
 	cout << "cost: " << func1.costFunction(best_params) << endl;
 	cout << best_params.toMat() << endl;
+	cout << "ok" << endl;
 	return 0;
 }

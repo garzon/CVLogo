@@ -149,6 +149,8 @@ cv::Mat Pso<FuncType>::_solve() {
 		for (int j = 0; j < particle_num; j++) {
 			double &swarm_best_cost = swarm_best_position[swarm_id_of_particles[j]].first;
 			if (swarm_best_cost > particles[j].cost) {
+				std::cout << particles[j].position << std::endl;
+				std::cout << particles[j].cost << std::endl << std::endl;
 				swarm_best_cost = particles[j].cost;
 				swarm_best_position[swarm_id_of_particles[j]].second = particles[j].position.clone();
 				if (best_cost > swarm_best_cost) {
