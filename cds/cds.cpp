@@ -110,6 +110,7 @@ double CDS::dist(const KeyPoint &p1, const KeyPoint &p2) const
 
 void CDS::computeCDSMatrix()
 {
+	if(Sx.size() == 0 || Sy.size() == 0)return;
 	D = Mat::zeros(Sx.size(),Sy.size(),CV_64FC1);
 	for(int i = 0; i < Dx.rows; i++)
 		for(int j = 0; j < Dy.rows; j++)
@@ -145,7 +146,7 @@ void CDS::computeCDSMatrix()
 	normalize(K_history, K_history, 1, 0, NORM_L1);
 	for(int t = 0; t < maxt; t++)
 	{
-		//cout << "============================== iterator num = " << t << " ===========================" << endl;
+		cout << "============================== iterator num = " << t << " ===========================" << endl;
 		//cout << norm(K_history) << endl;
 		if(norm(K_history) < eeps)break;
 		normalize(G(K_history),K, 1, 0, NORM_L1);
@@ -187,6 +188,12 @@ Mat CDS::G(const Mat &K)const
 
 bool CDS::match()
 {
+	if(Sx.size() == 0 || Sy.size() == 0)
+	{
+		matchY.clear();
+		matchVec.clear();
+		return false;
+	}
 	Kp = Mat(Sx.size(),Sy.size(),CV_64FC1); //条件概率 j|i
 	vector<double> sumK;  //当x=i时的和
 	sumK.clear();
