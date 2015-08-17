@@ -1,5 +1,5 @@
-#ifndef PSO_ICP_H
-#define PSO_ICP_H
+#ifndef PSO_H
+#define PSO_H
 
 #include <vector>
 
@@ -7,36 +7,40 @@
 
 #include "particle.h"
 
-template <typename ParamsType>
-class PSO_ICP
+template <typename FuncType>
+class Pso
 {
-    bool reInit_flag;
-    const int particle_num,generation,kmeans_generation,kmeans_k;
-    std::pair<double, cv::Mat> *swarm_best_position;
-    cv::Mat last_best_position;
-	std::vector<Particle<ParamsType>> particles;
-    int *swarm_id_of_particles;
-    double best_cost;
-    cv::Mat *kmeans_centroid;
+	typedef typename FuncType::ParamsType ParamsType;
 
-    void kmeans();
-        void kmeans_set_centroid();
-        void kmeans_set_swarm_id();
-        void kmeans_update_centroid();
+	bool reInit_flag;
+	const int particle_num, generation, kmeans_generation, kmeans_k;
+	std::pair<double, cv::Mat> *swarm_best_position;
+	cv::Mat last_best_position;
+	std::vector<Particle<ParamsType>> particles;
+	int *swarm_id_of_particles;
+	double best_cost;
+	cv::Mat *kmeans_centroid;
+
+	void kmeans();
+	void kmeans_set_centroid();
+	void kmeans_set_swarm_id();
+	void kmeans_update_centroid();
 
 	cv::Mat _solve();
 
 public:
 
-	PSO_ICP(ICostFunction<ParamsType>*);
+	Pso(FuncType &costFunc);
 
-	ParamsType solve();
+	ParamsType solve() {
+		return ParamsType(_solve());
+	}
 
-    ~PSO_ICP();
+	~Pso();
 };
 
-template <typename ParamsType>
-PSO_ICP<ParamsType>::PSO_ICP(ICostFunction<ParamsType> *costFunc) :
+template <typename FuncType>
+Pso<FuncType>::Pso(FuncType &costFunc) :
 	particle_num(32),
 	kmeans_k(3),
 	kmeans_generation(10),
@@ -44,21 +48,21 @@ PSO_ICP<ParamsType>::PSO_ICP(ICostFunction<ParamsType> *costFunc) :
 {
 	reInit_flag = false;
 	for (int i = 0; i<particle_num; i++)
-		particles.emplace_back(costFunc);
+		particles.emplace_back(&costFunc);
 	swarm_best_position = new std::pair<double, cv::Mat>[kmeans_k];
 	kmeans_centroid = new cv::Mat[kmeans_k];
 	swarm_id_of_particles = new int[particle_num];
 }
 
-template <typename ParamsType>
-PSO_ICP<ParamsType>::~PSO_ICP() {
+template <typename FuncType>
+Pso<FuncType>::~Pso() {
 	delete[] swarm_best_position;
 	delete[] swarm_id_of_particles;
 	delete[] kmeans_centroid;
 }
 
-template <typename ParamsType>
-void PSO_ICP<ParamsType>::kmeans_set_swarm_id(){
+template <typename FuncType>
+void Pso<FuncType>::kmeans_set_swarm_id(){
 	for (int j = 0; j<particle_num; j++){
 		double dist = COST_INF;
 		for (int i = 0; i<kmeans_k; i++){
@@ -72,8 +76,8 @@ void PSO_ICP<ParamsType>::kmeans_set_swarm_id(){
 	}
 }
 
-template <typename ParamsType>
-void PSO_ICP<ParamsType>::kmeans_update_centroid(){
+template <typename FuncType>
+void Pso<FuncType>::kmeans_update_centroid(){
 	cv::Mat *new_kmeans_centroid = new cv::Mat[kmeans_k];
 	int *counter = new int[kmeans_k];
 	for (int i = 0; i<kmeans_k; ++i){
@@ -93,8 +97,8 @@ void PSO_ICP<ParamsType>::kmeans_update_centroid(){
 	delete[] counter;
 }
 
-template <typename ParamsType>
-void PSO_ICP<ParamsType>::kmeans_set_centroid(){
+template <typename FuncType>
+void Pso<FuncType>::kmeans_set_centroid(){
 	int *p = new int[particle_num];
 	for (int i = 0; i<particle_num; i++)
 		p[i] = i;
@@ -106,8 +110,8 @@ void PSO_ICP<ParamsType>::kmeans_set_centroid(){
 	delete[] p;
 }
 
-template <typename ParamsType>
-void PSO_ICP<ParamsType>::kmeans(){
+template <typename FuncType>
+void Pso<FuncType>::kmeans(){
 	kmeans_set_centroid();
 	for (int i = 0; i<kmeans_generation; i++){
 		kmeans_set_swarm_id();
@@ -116,13 +120,14 @@ void PSO_ICP<ParamsType>::kmeans(){
 	}
 }
 
-template <typename ParamsType>
-cv::Mat PSO_ICP<ParamsType>::_solve() {
+template <typename FuncType>
+cv::Mat Pso<FuncType>::_solve() {
 
 	if (reInit_flag){
 		for (int i = 0; i<particle_num; i++)
 			particles[i].reInit(last_best_position);
-	} else {
+	}
+	else {
 		reInit_flag = true;
 	}
 
@@ -134,18 +139,26 @@ cv::Mat PSO_ICP<ParamsType>::_solve() {
 		swarm_best_position[j].first = COST_INF;
 	}
 
+	best_cost = COST_INF;
+
 	for (int i = 0; i<generation; i++){
 
 		kmeans();
 
 		// find the best particle in each swarm/cluster
 		for (int j = 0; j < particle_num; j++) {
-			double &best_cost = swarm_best_position[swarm_id_of_particles[j]].first;
-			if (best_cost > particles[j].cost) {
-				best_cost = particles[j].cost;
+			double &swarm_best_cost = swarm_best_position[swarm_id_of_particles[j]].first;
+			if (swarm_best_cost > particles[j].cost) {
+				swarm_best_cost = particles[j].cost;
 				swarm_best_position[swarm_id_of_particles[j]].second = particles[j].position.clone();
+				if (best_cost > swarm_best_cost) {
+					best_cost = swarm_best_cost;
+					last_best_position = particles[j].position.clone();
+				}
 			}
 		}
+
+		std::cout << "Iter #" << i << " - Cost: " << best_cost << std::endl;
 
 		// update the stat of particles
 		for (int j = 0; j < particle_num; j++) {
@@ -155,22 +168,7 @@ cv::Mat PSO_ICP<ParamsType>::_solve() {
 
 	}
 
-	// find the real global best particle in history
-
-	best_cost = COST_INF;
-	for (int j = 0; j<kmeans_k; j++) {
-		if (swarm_best_position[j].first < best_cost) {
-			best_cost = swarm_best_position[j].first;
-			last_best_position = swarm_best_position[j].second.clone();
-		}
-	}
-
 	return last_best_position;
 }
 
-template <typename ParamsType>
-ParamsType PSO_ICP<ParamsType>::solve() {
-	return ParamsType(_solve());
-}
-
-#endif // PSO_ICP_H
+#endif // PSO_H

@@ -9,8 +9,8 @@
 
 template <typename _ParamsType>
 class ICostFunction {
-	typedef _ParamsType ParamsType;
 public:
+	typedef _ParamsType ParamsType;
 	virtual double costFunction(const _ParamsType&) = 0;
 };
 
