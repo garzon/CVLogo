@@ -146,7 +146,7 @@ void CDS::computeCDSMatrix()
 	normalize(K_history, K_history, 1, 0, NORM_L1);
 	for(int t = 0; t < maxt; t++)
 	{
-		cout << "============================== iterator num = " << t << " ===========================" << endl;
+		//cout << "============================== iterator num = " << t << " ===========================" << endl;
 		//cout << norm(K_history) << endl;
 		if(norm(K_history) < eeps)break;
 		normalize(G(K_history),K, 1, 0, NORM_L1);
