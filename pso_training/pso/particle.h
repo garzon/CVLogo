@@ -40,11 +40,15 @@ public:
 // the config of the algorithm --------------
 
 template <typename ParamsType>
-const double Particle<ParamsType>::c1 = 1.4955,
-	Particle<ParamsType>::c2 = 1.4955,
-	Particle<ParamsType>::epsilon = 0.25,
-	Particle<ParamsType>::w = 0.5,
-	Particle<ParamsType>::pr = exp(-2) / ParamsType::dimension_of_freedom;
+const double Particle<ParamsType>::c1 = 1.4955;
+template <typename ParamsType>
+const double Particle<ParamsType>::c2 = 1.4955;
+template <typename ParamsType>
+const double Particle<ParamsType>::epsilon = 0.25;
+template <typename ParamsType>
+const double Particle<ParamsType>::w = 0.5;
+template <typename ParamsType>
+const double Particle<ParamsType>::pr = exp(-2) / ParamsType::dimension_of_freedom;
 
 // config end -------------------------------
 

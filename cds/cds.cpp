@@ -11,7 +11,7 @@ CDS::CDS():alpha(20),beta(20),tau(0.4),Nr(10),eps(1e-3),eeps(1e-13),
 		P.push_back(vector<Mat>(maxrho));
 		Q.push_back(vector<Mat>(maxrho));
 	}
-	Param tmp{alpha, beta, tau, Nr, eps, eeps,maxtheta, maxrho, maxt,threshold, responseThresholdx,responseThresholdy, rectangleThreshold};
+	Param tmp = {alpha, beta, tau, Nr, eps, eeps,maxtheta, maxrho, maxt,threshold, responseThresholdx,responseThresholdy, rectangleThreshold};
 	param = tmp;
 }
 
@@ -136,7 +136,7 @@ void CDS::computeCDSMatrix()
 			now++;
 		}
 	}
-	cout << norm(K_history) << endl;
+	//cout << norm(K_history) << endl;
 	if (norm(K_history) < eeps)
 	{
 		K = K_history.clone();
@@ -145,11 +145,11 @@ void CDS::computeCDSMatrix()
 	normalize(K_history, K_history, 1, 0, NORM_L1);
 	for(int t = 0; t < maxt; t++)
 	{
-		cout << "============================== iterator num = " << t << " ===========================" << endl;
-		cout << norm(K_history) << endl;
+		//cout << "============================== iterator num = " << t << " ===========================" << endl;
+		//cout << norm(K_history) << endl;
 		if(norm(K_history) < eeps)break;
 		normalize(G(K_history),K, 1, 0, NORM_L1);
-		cout << norm(K) << endl;
+		//cout << norm(K) << endl;
 		if(isnan(norm(K)))
 		{
 			K = K_history.clone();
@@ -223,9 +223,9 @@ bool CDS::match()
 				matchVec.push_back(DMatch(i,j,0,Kp.at<double>(i,j) / sumKp[i]));
 				if(matchY.find(j) == matchY.end()) matchY.insert(j);
 			}
-	cout << "match pair = " << matchY.size() <<endl;
-	cout << "key_point_num = " << Sx.size() << endl;
-	cout << "maxTau = " << matchY.size() << "/" << Sx.size() << " = " << (double) matchY.size() / Sx.size() << endl;
+	//cout << "match pair = " << matchY.size() <<endl;
+	//cout << "key_point_num = " << Sx.size() << endl;
+	//cout << "maxTau = " << matchY.size() << "/" << Sx.size() << " = " << (double) matchY.size() / Sx.size() << endl;
 	if(matchY.size() > tau * Sx.size()) return true;
 	return false;
 }
