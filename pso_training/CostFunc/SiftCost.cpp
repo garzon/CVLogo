@@ -97,6 +97,8 @@ double SiftCost::costOfMismatch(int index)                                      
     int nomatch=keyPointNum-matchs[index].size();
     if (nomatch<=keyPointNum*toleranceOfNoMatch) cost=0;
     else cost=pow(nomatch-keyPointNum*toleranceOfNoMatch,2);
+    if (Sys[index].size()<=minKeyPointNum) cost+=1000;
+    if (Sx.size()<=minKeyPointNum) cost+=1000;
 #ifdef DEBUG
     std::cout<<"costOfMismatch in match "<<index<<":"<<cost<<std::endl;
 #endif

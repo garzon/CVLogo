@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <cmath>
 
-#include "icostfunction.h"
+#include "ICostFunction.h"
 
 #define COST_INF (9e60)
 
