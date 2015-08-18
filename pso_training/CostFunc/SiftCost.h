@@ -13,8 +13,8 @@
 #include <opencv2/imgproc/imgproc.hpp>
 
 #include "SiftParams.h"
-#include "pso/ICostFunction.h"
-#include "../cds/cds.h"
+#include "../pso/icostfunction.h"
+#include "../../cds/cds.h"
 
 #ifndef Eps
 #define Eps 0.000001

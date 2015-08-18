@@ -5,8 +5,8 @@
 using namespace std;
 
 int main() {
-	vector<string> trainingSet = { "1.jpeg", "2.jpeg", "3.jpeg", "4.jpeg" };
-	SiftCost func1(trainingSet, "logo.jpeg");
+    vector<string> trainingSet = { "/home/garzon/1.jpg", "/home/garzon/2.jpg", "/home/garzon/3.jpg", "/home/garzon/4.jpg" };
+    SiftCost_1 func1(trainingSet, "/home/garzon/logo.jpg");
 	Pso<SiftCost> pso(func1);
 	SiftParams best_params = pso.solve();
 	cout << "cost: " << func1.costFunction(best_params) << endl;

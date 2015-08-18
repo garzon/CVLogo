@@ -151,7 +151,7 @@ void CDS::computeCDSMatrix()
 		if(norm(K_history) < eeps)break;
 		normalize(G(K_history),K, 1, 0, NORM_L1);
 		//cout << norm(K) << endl;
-		if(isnan(norm(K)))
+        if(std::isnan(norm(K)))
 		{
 			K = K_history.clone();
 			break;
@@ -178,7 +178,7 @@ Mat CDS::G(const Mat &K)const
 		for(int j = 0; j < ret.cols; j++)
 		{
 			(*now) = exp(*now);
-			if(isnan(*now)) *now = 0;
+            if(std::isnan(*now)) *now = 0;
 			now++;
 		}
 	}
