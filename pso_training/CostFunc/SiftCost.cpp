@@ -26,7 +26,8 @@ double SiftCost::costFunction(const SiftParams& siftParams)
         throw std::runtime_error("In SiftCost::costFunction: Too many params");
     }                                                                                                               //判定一些意外情况。
 
-
+    double *costs = new double [trainSetNum];
+#pragma omp parallel for
     for(int i=0;i<trainSetNum;i++){
         cds[i]->param.alpha=siftParams.params[0];
         cds[i]->param.beta=siftParams.params[1];
@@ -55,7 +56,7 @@ double SiftCost::costFunction(const SiftParams& siftParams)
         std::cout<<"CDSMatrix computing finished!"<<std::endl;
 #endif
         if(!cds[i]->match()) {
-            cost+=costOfNoMatch();//这里要改！!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            costs[i] = costOfNoMatch();//这里要改！!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 #ifdef DEBUG
             std::cout<<"not match in match "<<i<<":"<<std::endl;
 #endif
@@ -63,12 +64,18 @@ double SiftCost::costFunction(const SiftParams& siftParams)
 #ifdef DEBUG
         std::cout<<"matching finished!"<<std::endl;
 #endif
+
         matchs.resize(trainSetNum);
         matchs[i]=cds[i]->getMatchVec();
 #ifdef DEBUG
         std::cout<<"getting matchVec finished!"<<std::endl;
 #endif
     }
+
+    for(int i=0; i<trainSetNum; i++)
+        cost += costs[i];
+    delete [] costs;
+
     if(pictureUpdate){
         Sys.resize(trainSetNum);
         for(int i=0;i<trainSetNum;i++) {
