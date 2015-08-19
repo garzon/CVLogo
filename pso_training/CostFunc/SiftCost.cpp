@@ -1,6 +1,6 @@
 
 #include "SiftCost.h"
-//#define DEBUG
+#define DEBUG
 
 //下面一部分是SiftCost的核心接口costFunction(...)以及其具体实现所用到的几个函数
 double SiftCost::costFunction(const SiftParams& siftParams)
@@ -26,7 +26,8 @@ double SiftCost::costFunction(const SiftParams& siftParams)
         throw std::runtime_error("In SiftCost::costFunction: Too many params");
     }                                                                                                               //判定一些意外情况。
 
-
+    double *costs = new double [trainSetNum];
+#pragma omp parallel for
     for(int i=0;i<trainSetNum;i++){
         cds[i]->param.alpha=siftParams.params[0];
         cds[i]->param.beta=siftParams.params[1];
@@ -55,7 +56,7 @@ double SiftCost::costFunction(const SiftParams& siftParams)
         std::cout<<"CDSMatrix computing finished!"<<std::endl;
 #endif
         if(!cds[i]->match()) {
-            cost+=costOfNoMatch();//这里要改！!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            costs[i] = costOfNoMatch();//这里要改！!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 #ifdef DEBUG
             std::cout<<"not match in match "<<i<<":"<<std::endl;
 #endif
@@ -63,12 +64,18 @@ double SiftCost::costFunction(const SiftParams& siftParams)
 #ifdef DEBUG
         std::cout<<"matching finished!"<<std::endl;
 #endif
+
         matchs.resize(trainSetNum);
         matchs[i]=cds[i]->getMatchVec();
 #ifdef DEBUG
         std::cout<<"getting matchVec finished!"<<std::endl;
 #endif
     }
+
+    for(int i=0; i<trainSetNum; i++)
+        cost += costs[i];
+    delete [] costs;
+
     if(pictureUpdate){
         Sys.resize(trainSetNum);
         for(int i=0;i<trainSetNum;i++) {
@@ -80,6 +87,8 @@ double SiftCost::costFunction(const SiftParams& siftParams)
 #endif
     }
     //计算匹配点对matchs
+
+    keyPointNum=Sx.size();
 
 
     for(int i=0;i<trainSetNum;i++){
@@ -97,7 +106,10 @@ double SiftCost::costOfMismatch(int index)                                      
     int nomatch=keyPointNum-matchs[index].size();
     if (nomatch<=keyPointNum*toleranceOfNoMatch) cost=0;
     else cost=pow(nomatch-keyPointNum*toleranceOfNoMatch,2);
+    if (Sys[index].size()<=minKeyPointNumY) cost+=pow(minKeyPointNumY-Sys[index].size(),2);              //待匹配图特征点数太少！
+    if (Sx.size()<=minKeyPointNumX) cost+=pow(minKeyPointNumX-Sx.size(),2);                  //logo图特征点数太少！
 #ifdef DEBUG
+    std::cout<<"keyPointNum:"<<keyPointNum<<std::endl<<"nomatch:"<<nomatch<<std::endl;
     std::cout<<"costOfMismatch in match "<<index<<":"<<cost<<std::endl;
 #endif
     return cost;
