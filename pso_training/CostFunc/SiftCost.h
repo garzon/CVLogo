@@ -22,8 +22,11 @@
 #ifndef maxProportation
 #define maxProportation 100000
 #endif // maxProportation
-#ifndef minKeyPointNum
-#define minKeyPointNum 20
+#ifndef minKeyPointNumX
+#define minKeyPointNumX 40
+#endif
+#ifndef minKeyPointNumY
+#define minKeyPointNumY 50
 #endif
 //#define DEBUG
 /*
@@ -62,7 +65,7 @@ protected:
     virtual double costOfMismatch(int index);                         //这里是一个纯数学的函数。本质是代价函数中的一项的实现
     virtual double costOfWrongMatch(int index);                 //这里是一个纯数学的函数。本质是代价函数中的一项的实现
     virtual double costOfNoMatch(){
-        return 1000;
+        return 3000;
     }
 
     double distanceX(int index,int i,int j);                                //index代表第几个训练集。计算第i对匹配点对、第j对匹配点对在Logo上的距离。

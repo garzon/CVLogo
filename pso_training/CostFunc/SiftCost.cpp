@@ -88,6 +88,8 @@ double SiftCost::costFunction(const SiftParams& siftParams)
     }
     //计算匹配点对matchs
 
+    keyPointNum=Sx.size();
+
 
     for(int i=0;i<trainSetNum;i++){
         cost+=(costOfMismatch(i)+costOfWrongMatch(i));       //costOfWrongMatch(i)应该会比较耗时。可以并行。
@@ -104,9 +106,10 @@ double SiftCost::costOfMismatch(int index)                                      
     int nomatch=keyPointNum-matchs[index].size();
     if (nomatch<=keyPointNum*toleranceOfNoMatch) cost=0;
     else cost=pow(nomatch-keyPointNum*toleranceOfNoMatch,2);
-    if (Sys[index].size()<=minKeyPointNum) cost+=1000;
-    if (Sx.size()<=minKeyPointNum) cost+=1000;
+    if (Sys[index].size()<=minKeyPointNumY) cost+=pow(minKeyPointNumY-Sys[index].size(),2);              //待匹配图特征点数太少！
+    if (Sx.size()<=minKeyPointNumX) cost+=pow(minKeyPointNumX-Sx.size(),2);                  //logo图特征点数太少！
 #ifdef DEBUG
+    std::cout<<"keyPointNum:"<<keyPointNum<<std::endl<<"nomatch:"<<nomatch<<std::endl;
     std::cout<<"costOfMismatch in match "<<index<<":"<<cost<<std::endl;
 #endif
     return cost;
