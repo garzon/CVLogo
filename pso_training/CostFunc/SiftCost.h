@@ -13,7 +13,7 @@
 #include <opencv2/imgproc/imgproc.hpp>
 
 #include "SiftParams.h"
-#include "../pso/icostfunction.h"
+#include "../pso/ICostFunction.h"
 #include "../../cds/cds.h"
 
 #ifndef Eps
@@ -22,9 +22,6 @@
 #ifndef maxProportation
 #define maxProportation 100000
 #endif // maxProportation
-#ifndef minKeyPointNum
-#define minKeyPointNum 20
-#endif
 //#define DEBUG
 /*
 使用方法：

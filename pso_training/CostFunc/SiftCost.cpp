@@ -26,8 +26,7 @@ double SiftCost::costFunction(const SiftParams& siftParams)
         throw std::runtime_error("In SiftCost::costFunction: Too many params");
     }                                                                                                               //判定一些意外情况。
 
-    double *costs = new double [trainSetNum];
-#pragma omp parallel for
+
     for(int i=0;i<trainSetNum;i++){
         cds[i]->param.alpha=siftParams.params[0];
         cds[i]->param.beta=siftParams.params[1];
@@ -56,7 +55,7 @@ double SiftCost::costFunction(const SiftParams& siftParams)
         std::cout<<"CDSMatrix computing finished!"<<std::endl;
 #endif
         if(!cds[i]->match()) {
-            costs[i] = costOfNoMatch();//这里要改！!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            cost+=costOfNoMatch();//这里要改！!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 #ifdef DEBUG
             std::cout<<"not match in match "<<i<<":"<<std::endl;
 #endif
@@ -64,18 +63,12 @@ double SiftCost::costFunction(const SiftParams& siftParams)
 #ifdef DEBUG
         std::cout<<"matching finished!"<<std::endl;
 #endif
-
         matchs.resize(trainSetNum);
         matchs[i]=cds[i]->getMatchVec();
 #ifdef DEBUG
         std::cout<<"getting matchVec finished!"<<std::endl;
 #endif
     }
-
-    for(int i=0; i<trainSetNum; i++)
-        cost += costs[i];
-    delete [] costs;
-
     if(pictureUpdate){
         Sys.resize(trainSetNum);
         for(int i=0;i<trainSetNum;i++) {
@@ -104,8 +97,6 @@ double SiftCost::costOfMismatch(int index)                                      
     int nomatch=keyPointNum-matchs[index].size();
     if (nomatch<=keyPointNum*toleranceOfNoMatch) cost=0;
     else cost=pow(nomatch-keyPointNum*toleranceOfNoMatch,2);
-    if (Sys[index].size()<=minKeyPointNum) cost+=1000;
-    if (Sx.size()<=minKeyPointNum) cost+=1000;
 #ifdef DEBUG
     std::cout<<"costOfMismatch in match "<<index<<":"<<cost<<std::endl;
 #endif
