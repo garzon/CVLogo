@@ -8,6 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		BF06FACF1BBAAF6500CC509A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF06FACE1BBAAF6500CC509A /* main.cpp */; };
+		BF06FADD1BBAAFB600CC509A /* cds.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF06FADA1BBAAFB600CC509A /* cds.cpp */; settings = {ASSET_TAGS = (); }; };
+		BF06FADE1BBAAFB600CC509A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF06FADC1BBAAFB600CC509A /* main.cpp */; settings = {ASSET_TAGS = (); }; };
+		BF06FAEF1BBAAFD600CC509A /* json_reader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF06FAE71BBAAFD600CC509A /* json_reader.cpp */; settings = {ASSET_TAGS = (); }; };
+		BF06FAF01BBAAFD600CC509A /* json_value.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF06FAE81BBAAFD600CC509A /* json_value.cpp */; settings = {ASSET_TAGS = (); }; };
+		BF06FAF11BBAAFD600CC509A /* json_writer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF06FAEA1BBAAFD600CC509A /* json_writer.cpp */; settings = {ASSET_TAGS = (); }; };
+		BF06FAF61BBAB00700CC509A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF06FAF51BBAB00700CC509A /* main.cpp */; settings = {ASSET_TAGS = (); }; };
+		BF06FB011BBAB02100CC509A /* LeastSquareMethod.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF06FAF91BBAB02100CC509A /* LeastSquareMethod.cpp */; settings = {ASSET_TAGS = (); }; };
+		BF06FB021BBAB02100CC509A /* SiftCost_1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF06FAFB1BBAB02100CC509A /* SiftCost_1.cpp */; settings = {ASSET_TAGS = (); }; };
+		BF06FB031BBAB02100CC509A /* SiftCost.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF06FAFD1BBAB02100CC509A /* SiftCost.cpp */; settings = {ASSET_TAGS = (); }; };
+		BF06FB041BBAB02100CC509A /* SiftParams.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF06FAFF1BBAB02100CC509A /* SiftParams.cpp */; settings = {ASSET_TAGS = (); }; };
+		BF06FB0B1BBAB02F00CC509A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF06FB071BBAB02F00CC509A /* main.cpp */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +36,40 @@
 /* Begin PBXFileReference section */
 		BF06FACB1BBAAF6500CC509A /* CVLogo */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CVLogo; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF06FACE1BBAAF6500CC509A /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		BF06FADA1BBAAFB600CC509A /* cds.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = cds.cpp; path = cds/cds.cpp; sourceTree = "<group>"; };
+		BF06FADB1BBAAFB600CC509A /* cds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cds.h; path = cds/cds.h; sourceTree = "<group>"; };
+		BF06FADC1BBAAFB600CC509A /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = cds/main.cpp; sourceTree = "<group>"; };
+		BF06FAE01BBAAFD600CC509A /* autolink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = autolink.h; path = json/autolink.h; sourceTree = "<group>"; };
+		BF06FAE11BBAAFD600CC509A /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = config.h; path = json/config.h; sourceTree = "<group>"; };
+		BF06FAE21BBAAFD600CC509A /* features.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = features.h; path = json/features.h; sourceTree = "<group>"; };
+		BF06FAE31BBAAFD600CC509A /* forwards.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = forwards.h; path = json/forwards.h; sourceTree = "<group>"; };
+		BF06FAE41BBAAFD600CC509A /* json_batchallocator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = json_batchallocator.h; path = json/json_batchallocator.h; sourceTree = "<group>"; };
+		BF06FAE51BBAAFD600CC509A /* json_internalarray.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = json_internalarray.inl; path = json/json_internalarray.inl; sourceTree = "<group>"; };
+		BF06FAE61BBAAFD600CC509A /* json_internalmap.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = json_internalmap.inl; path = json/json_internalmap.inl; sourceTree = "<group>"; };
+		BF06FAE71BBAAFD600CC509A /* json_reader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = json_reader.cpp; path = json/json_reader.cpp; sourceTree = "<group>"; };
+		BF06FAE81BBAAFD600CC509A /* json_value.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = json_value.cpp; path = json/json_value.cpp; sourceTree = "<group>"; };
+		BF06FAE91BBAAFD600CC509A /* json_valueiterator.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = json_valueiterator.inl; path = json/json_valueiterator.inl; sourceTree = "<group>"; };
+		BF06FAEA1BBAAFD600CC509A /* json_writer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = json_writer.cpp; path = json/json_writer.cpp; sourceTree = "<group>"; };
+		BF06FAEB1BBAAFD600CC509A /* json.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = json.h; path = json/json.h; sourceTree = "<group>"; };
+		BF06FAEC1BBAAFD600CC509A /* reader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = reader.h; path = json/reader.h; sourceTree = "<group>"; };
+		BF06FAED1BBAAFD600CC509A /* value.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = value.h; path = json/value.h; sourceTree = "<group>"; };
+		BF06FAEE1BBAAFD600CC509A /* writer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = writer.h; path = json/writer.h; sourceTree = "<group>"; };
+		BF06FAF31BBAAFE600CC509A /* app.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = app.py; path = crawl/app.py; sourceTree = "<group>"; };
+		BF06FAF51BBAB00700CC509A /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = pso_training/main.cpp; sourceTree = "<group>"; };
+		BF06FAF91BBAB02100CC509A /* LeastSquareMethod.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LeastSquareMethod.cpp; path = pso_training/CostFunc/LeastSquareMethod.cpp; sourceTree = "<group>"; };
+		BF06FAFA1BBAB02100CC509A /* LeastSquareMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LeastSquareMethod.h; path = pso_training/CostFunc/LeastSquareMethod.h; sourceTree = "<group>"; };
+		BF06FAFB1BBAB02100CC509A /* SiftCost_1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SiftCost_1.cpp; path = pso_training/CostFunc/SiftCost_1.cpp; sourceTree = "<group>"; };
+		BF06FAFC1BBAB02100CC509A /* SiftCost_1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SiftCost_1.h; path = pso_training/CostFunc/SiftCost_1.h; sourceTree = "<group>"; };
+		BF06FAFD1BBAB02100CC509A /* SiftCost.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SiftCost.cpp; path = pso_training/CostFunc/SiftCost.cpp; sourceTree = "<group>"; };
+		BF06FAFE1BBAB02100CC509A /* SiftCost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SiftCost.h; path = pso_training/CostFunc/SiftCost.h; sourceTree = "<group>"; };
+		BF06FAFF1BBAB02100CC509A /* SiftParams.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SiftParams.cpp; path = pso_training/CostFunc/SiftParams.cpp; sourceTree = "<group>"; };
+		BF06FB001BBAB02100CC509A /* SiftParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SiftParams.h; path = pso_training/CostFunc/SiftParams.h; sourceTree = "<group>"; };
+		BF06FB051BBAB02F00CC509A /* icostfunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = icostfunction.h; path = pso_training/pso/icostfunction.h; sourceTree = "<group>"; };
+		BF06FB061BBAB02F00CC509A /* IParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IParams.h; path = pso_training/pso/IParams.h; sourceTree = "<group>"; };
+		BF06FB071BBAB02F00CC509A /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = pso_training/pso/main.cpp; sourceTree = "<group>"; };
+		BF06FB081BBAB02F00CC509A /* particle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = particle.h; path = pso_training/pso/particle.h; sourceTree = "<group>"; };
+		BF06FB091BBAB02F00CC509A /* pso_icp.pro */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = pso_icp.pro; path = pso_training/pso/pso_icp.pro; sourceTree = "<group>"; };
+		BF06FB0A1BBAB02F00CC509A /* pso.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = pso.h; path = pso_training/pso/pso.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +86,10 @@
 		BF06FAC21BBAAF6500CC509A = {
 			isa = PBXGroup;
 			children = (
+				BF06FAF41BBAAFF700CC509A /* pso_training */,
+				BF06FAF21BBAAFD900CC509A /* crawl */,
+				BF06FADF1BBAAFCB00CC509A /* json */,
+				BF06FAD91BBAAF9000CC509A /* cds */,
 				BF06FACD1BBAAF6500CC509A /* CVLogo */,
 				BF06FACC1BBAAF6500CC509A /* Products */,
 			);
@@ -60,6 +109,84 @@
 				BF06FACE1BBAAF6500CC509A /* main.cpp */,
 			);
 			path = CVLogo;
+			sourceTree = "<group>";
+		};
+		BF06FAD91BBAAF9000CC509A /* cds */ = {
+			isa = PBXGroup;
+			children = (
+				BF06FADA1BBAAFB600CC509A /* cds.cpp */,
+				BF06FADB1BBAAFB600CC509A /* cds.h */,
+				BF06FADC1BBAAFB600CC509A /* main.cpp */,
+			);
+			name = cds;
+			sourceTree = "<group>";
+		};
+		BF06FADF1BBAAFCB00CC509A /* json */ = {
+			isa = PBXGroup;
+			children = (
+				BF06FAE01BBAAFD600CC509A /* autolink.h */,
+				BF06FAE11BBAAFD600CC509A /* config.h */,
+				BF06FAE21BBAAFD600CC509A /* features.h */,
+				BF06FAE31BBAAFD600CC509A /* forwards.h */,
+				BF06FAE41BBAAFD600CC509A /* json_batchallocator.h */,
+				BF06FAE51BBAAFD600CC509A /* json_internalarray.inl */,
+				BF06FAE61BBAAFD600CC509A /* json_internalmap.inl */,
+				BF06FAE71BBAAFD600CC509A /* json_reader.cpp */,
+				BF06FAE81BBAAFD600CC509A /* json_value.cpp */,
+				BF06FAE91BBAAFD600CC509A /* json_valueiterator.inl */,
+				BF06FAEA1BBAAFD600CC509A /* json_writer.cpp */,
+				BF06FAEB1BBAAFD600CC509A /* json.h */,
+				BF06FAEC1BBAAFD600CC509A /* reader.h */,
+				BF06FAED1BBAAFD600CC509A /* value.h */,
+				BF06FAEE1BBAAFD600CC509A /* writer.h */,
+			);
+			name = json;
+			sourceTree = "<group>";
+		};
+		BF06FAF21BBAAFD900CC509A /* crawl */ = {
+			isa = PBXGroup;
+			children = (
+				BF06FAF31BBAAFE600CC509A /* app.py */,
+			);
+			name = crawl;
+			sourceTree = "<group>";
+		};
+		BF06FAF41BBAAFF700CC509A /* pso_training */ = {
+			isa = PBXGroup;
+			children = (
+				BF06FAF81BBAB01400CC509A /* pso */,
+				BF06FAF71BBAB00A00CC509A /* CostFunc */,
+				BF06FAF51BBAB00700CC509A /* main.cpp */,
+			);
+			name = pso_training;
+			sourceTree = "<group>";
+		};
+		BF06FAF71BBAB00A00CC509A /* CostFunc */ = {
+			isa = PBXGroup;
+			children = (
+				BF06FAF91BBAB02100CC509A /* LeastSquareMethod.cpp */,
+				BF06FAFA1BBAB02100CC509A /* LeastSquareMethod.h */,
+				BF06FAFB1BBAB02100CC509A /* SiftCost_1.cpp */,
+				BF06FAFC1BBAB02100CC509A /* SiftCost_1.h */,
+				BF06FAFD1BBAB02100CC509A /* SiftCost.cpp */,
+				BF06FAFE1BBAB02100CC509A /* SiftCost.h */,
+				BF06FAFF1BBAB02100CC509A /* SiftParams.cpp */,
+				BF06FB001BBAB02100CC509A /* SiftParams.h */,
+			);
+			name = CostFunc;
+			sourceTree = "<group>";
+		};
+		BF06FAF81BBAB01400CC509A /* pso */ = {
+			isa = PBXGroup;
+			children = (
+				BF06FB051BBAB02F00CC509A /* icostfunction.h */,
+				BF06FB061BBAB02F00CC509A /* IParams.h */,
+				BF06FB071BBAB02F00CC509A /* main.cpp */,
+				BF06FB081BBAB02F00CC509A /* particle.h */,
+				BF06FB091BBAB02F00CC509A /* pso_icp.pro */,
+				BF06FB0A1BBAB02F00CC509A /* pso.h */,
+			);
+			name = pso;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -118,7 +245,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF06FAEF1BBAAFD600CC509A /* json_reader.cpp in Sources */,
+				BF06FB021BBAB02100CC509A /* SiftCost_1.cpp in Sources */,
+				BF06FB0B1BBAB02F00CC509A /* main.cpp in Sources */,
+				BF06FB011BBAB02100CC509A /* LeastSquareMethod.cpp in Sources */,
+				BF06FADD1BBAAFB600CC509A /* cds.cpp in Sources */,
+				BF06FB031BBAB02100CC509A /* SiftCost.cpp in Sources */,
+				BF06FAF01BBAAFD600CC509A /* json_value.cpp in Sources */,
+				BF06FB041BBAB02100CC509A /* SiftParams.cpp in Sources */,
 				BF06FACF1BBAAF6500CC509A /* main.cpp in Sources */,
+				BF06FAF61BBAB00700CC509A /* main.cpp in Sources */,
+				BF06FAF11BBAAFD600CC509A /* json_writer.cpp in Sources */,
+				BF06FADE1BBAAFB600CC509A /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
