@@ -13,12 +13,6 @@
 		BF06FAEF1BBAAFD600CC509A /* json_reader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF06FAE71BBAAFD600CC509A /* json_reader.cpp */; settings = {ASSET_TAGS = (); }; };
 		BF06FAF01BBAAFD600CC509A /* json_value.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF06FAE81BBAAFD600CC509A /* json_value.cpp */; settings = {ASSET_TAGS = (); }; };
 		BF06FAF11BBAAFD600CC509A /* json_writer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF06FAEA1BBAAFD600CC509A /* json_writer.cpp */; settings = {ASSET_TAGS = (); }; };
-		BF06FAF61BBAB00700CC509A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF06FAF51BBAB00700CC509A /* main.cpp */; settings = {ASSET_TAGS = (); }; };
-		BF06FB011BBAB02100CC509A /* LeastSquareMethod.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF06FAF91BBAB02100CC509A /* LeastSquareMethod.cpp */; settings = {ASSET_TAGS = (); }; };
-		BF06FB021BBAB02100CC509A /* SiftCost_1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF06FAFB1BBAB02100CC509A /* SiftCost_1.cpp */; settings = {ASSET_TAGS = (); }; };
-		BF06FB031BBAB02100CC509A /* SiftCost.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF06FAFD1BBAB02100CC509A /* SiftCost.cpp */; settings = {ASSET_TAGS = (); }; };
-		BF06FB041BBAB02100CC509A /* SiftParams.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF06FAFF1BBAB02100CC509A /* SiftParams.cpp */; settings = {ASSET_TAGS = (); }; };
-		BF06FB0B1BBAB02F00CC509A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF06FB071BBAB02F00CC509A /* main.cpp */; settings = {ASSET_TAGS = (); }; };
 		BF06FB1C1BBAB20A00CC509A /* libopencv_calib3d.2.4.12.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF06FB0D1BBAB20A00CC509A /* libopencv_calib3d.2.4.12.dylib */; settings = {ASSET_TAGS = (); }; };
 		BF06FB1D1BBAB20A00CC509A /* libopencv_contrib.2.4.12.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF06FB0E1BBAB20A00CC509A /* libopencv_contrib.2.4.12.dylib */; settings = {ASSET_TAGS = (); }; };
 		BF06FB1E1BBAB20A00CC509A /* libopencv_core.2.4.12.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF06FB0F1BBAB20A00CC509A /* libopencv_core.2.4.12.dylib */; settings = {ASSET_TAGS = (); }; };
@@ -73,21 +67,6 @@
 		BF06FAED1BBAAFD600CC509A /* value.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = value.h; path = json/value.h; sourceTree = "<group>"; };
 		BF06FAEE1BBAAFD600CC509A /* writer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = writer.h; path = json/writer.h; sourceTree = "<group>"; };
 		BF06FAF31BBAAFE600CC509A /* app.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = app.py; path = crawl/app.py; sourceTree = "<group>"; };
-		BF06FAF51BBAB00700CC509A /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = pso_training/main.cpp; sourceTree = "<group>"; };
-		BF06FAF91BBAB02100CC509A /* LeastSquareMethod.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LeastSquareMethod.cpp; path = pso_training/CostFunc/LeastSquareMethod.cpp; sourceTree = "<group>"; };
-		BF06FAFA1BBAB02100CC509A /* LeastSquareMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LeastSquareMethod.h; path = pso_training/CostFunc/LeastSquareMethod.h; sourceTree = "<group>"; };
-		BF06FAFB1BBAB02100CC509A /* SiftCost_1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SiftCost_1.cpp; path = pso_training/CostFunc/SiftCost_1.cpp; sourceTree = "<group>"; };
-		BF06FAFC1BBAB02100CC509A /* SiftCost_1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SiftCost_1.h; path = pso_training/CostFunc/SiftCost_1.h; sourceTree = "<group>"; };
-		BF06FAFD1BBAB02100CC509A /* SiftCost.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SiftCost.cpp; path = pso_training/CostFunc/SiftCost.cpp; sourceTree = "<group>"; };
-		BF06FAFE1BBAB02100CC509A /* SiftCost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SiftCost.h; path = pso_training/CostFunc/SiftCost.h; sourceTree = "<group>"; };
-		BF06FAFF1BBAB02100CC509A /* SiftParams.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SiftParams.cpp; path = pso_training/CostFunc/SiftParams.cpp; sourceTree = "<group>"; };
-		BF06FB001BBAB02100CC509A /* SiftParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SiftParams.h; path = pso_training/CostFunc/SiftParams.h; sourceTree = "<group>"; };
-		BF06FB051BBAB02F00CC509A /* icostfunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = icostfunction.h; path = pso_training/pso/icostfunction.h; sourceTree = "<group>"; };
-		BF06FB061BBAB02F00CC509A /* IParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IParams.h; path = pso_training/pso/IParams.h; sourceTree = "<group>"; };
-		BF06FB071BBAB02F00CC509A /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = pso_training/pso/main.cpp; sourceTree = "<group>"; };
-		BF06FB081BBAB02F00CC509A /* particle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = particle.h; path = pso_training/pso/particle.h; sourceTree = "<group>"; };
-		BF06FB091BBAB02F00CC509A /* pso_icp.pro */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = pso_icp.pro; path = pso_training/pso/pso_icp.pro; sourceTree = "<group>"; };
-		BF06FB0A1BBAB02F00CC509A /* pso.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = pso.h; path = pso_training/pso/pso.h; sourceTree = "<group>"; };
 		BF06FB0D1BBAB20A00CC509A /* libopencv_calib3d.2.4.12.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_calib3d.2.4.12.dylib; path = ../../../../../usr/local/Cellar/opencv/2.4.12/lib/libopencv_calib3d.2.4.12.dylib; sourceTree = "<group>"; };
 		BF06FB0E1BBAB20A00CC509A /* libopencv_contrib.2.4.12.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_contrib.2.4.12.dylib; path = ../../../../../usr/local/Cellar/opencv/2.4.12/lib/libopencv_contrib.2.4.12.dylib; sourceTree = "<group>"; };
 		BF06FB0F1BBAB20A00CC509A /* libopencv_core.2.4.12.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_core.2.4.12.dylib; path = ../../../../../usr/local/Cellar/opencv/2.4.12/lib/libopencv_core.2.4.12.dylib; sourceTree = "<group>"; };
@@ -141,7 +120,6 @@
 			isa = PBXGroup;
 			children = (
 				BF06FB0C1BBAB1DC00CC509A /* Library */,
-				BF06FAF41BBAAFF700CC509A /* pso_training */,
 				BF06FAF21BBAAFD900CC509A /* crawl */,
 				BF06FADF1BBAAFCB00CC509A /* json */,
 				BF06FAD91BBAAF9000CC509A /* cds */,
@@ -204,44 +182,6 @@
 				BF06FAF31BBAAFE600CC509A /* app.py */,
 			);
 			name = crawl;
-			sourceTree = "<group>";
-		};
-		BF06FAF41BBAAFF700CC509A /* pso_training */ = {
-			isa = PBXGroup;
-			children = (
-				BF06FAF81BBAB01400CC509A /* pso */,
-				BF06FAF71BBAB00A00CC509A /* CostFunc */,
-				BF06FAF51BBAB00700CC509A /* main.cpp */,
-			);
-			name = pso_training;
-			sourceTree = "<group>";
-		};
-		BF06FAF71BBAB00A00CC509A /* CostFunc */ = {
-			isa = PBXGroup;
-			children = (
-				BF06FAF91BBAB02100CC509A /* LeastSquareMethod.cpp */,
-				BF06FAFA1BBAB02100CC509A /* LeastSquareMethod.h */,
-				BF06FAFB1BBAB02100CC509A /* SiftCost_1.cpp */,
-				BF06FAFC1BBAB02100CC509A /* SiftCost_1.h */,
-				BF06FAFD1BBAB02100CC509A /* SiftCost.cpp */,
-				BF06FAFE1BBAB02100CC509A /* SiftCost.h */,
-				BF06FAFF1BBAB02100CC509A /* SiftParams.cpp */,
-				BF06FB001BBAB02100CC509A /* SiftParams.h */,
-			);
-			name = CostFunc;
-			sourceTree = "<group>";
-		};
-		BF06FAF81BBAB01400CC509A /* pso */ = {
-			isa = PBXGroup;
-			children = (
-				BF06FB051BBAB02F00CC509A /* icostfunction.h */,
-				BF06FB061BBAB02F00CC509A /* IParams.h */,
-				BF06FB071BBAB02F00CC509A /* main.cpp */,
-				BF06FB081BBAB02F00CC509A /* particle.h */,
-				BF06FB091BBAB02F00CC509A /* pso_icp.pro */,
-				BF06FB0A1BBAB02F00CC509A /* pso.h */,
-			);
-			name = pso;
 			sourceTree = "<group>";
 		};
 		BF06FB0C1BBAB1DC00CC509A /* Library */ = {
@@ -326,15 +266,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF06FAEF1BBAAFD600CC509A /* json_reader.cpp in Sources */,
-				BF06FB021BBAB02100CC509A /* SiftCost_1.cpp in Sources */,
-				BF06FB0B1BBAB02F00CC509A /* main.cpp in Sources */,
-				BF06FB011BBAB02100CC509A /* LeastSquareMethod.cpp in Sources */,
 				BF06FADD1BBAAFB600CC509A /* cds.cpp in Sources */,
-				BF06FB031BBAB02100CC509A /* SiftCost.cpp in Sources */,
 				BF06FAF01BBAAFD600CC509A /* json_value.cpp in Sources */,
-				BF06FB041BBAB02100CC509A /* SiftParams.cpp in Sources */,
 				BF06FACF1BBAAF6500CC509A /* main.cpp in Sources */,
-				BF06FAF61BBAB00700CC509A /* main.cpp in Sources */,
 				BF06FAF11BBAAFD600CC509A /* json_writer.cpp in Sources */,
 				BF06FADE1BBAAFB600CC509A /* main.cpp in Sources */,
 			);
@@ -346,7 +280,7 @@
 		BF06FAD01BBAAF6500CC509A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -388,7 +322,7 @@
 		BF06FAD11BBAAF6500CC509A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -427,8 +361,11 @@
 					"$(inherited)",
 					/usr/local/Cellar/opencv/2.4.12/lib,
 					/usr/local/Cellar/curl/7.44.0/lib,
+					/usr/local/Cellar/opencv/2.4.12/include,
+					/usr/local/Cellar/curl/7.44.0/include,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "/usr/local/Cellar/curl/7.44.0/include /usr/local/Cellar/opencv/2.4.12/include";
 			};
 			name = Debug;
 		};
@@ -439,8 +376,11 @@
 					"$(inherited)",
 					/usr/local/Cellar/opencv/2.4.12/lib,
 					/usr/local/Cellar/curl/7.44.0/lib,
+					/usr/local/Cellar/opencv/2.4.12/include,
+					/usr/local/Cellar/curl/7.44.0/include,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "/usr/local/Cellar/curl/7.44.0/include /usr/local/Cellar/opencv/2.4.12/include";
 			};
 			name = Release;
 		};
@@ -463,6 +403,7 @@
 				BF06FAD41BBAAF6500CC509A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

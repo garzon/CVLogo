@@ -1,4 +1,5 @@
-//#include <QCoreApplication>
+/*
+#include <QCoreApplication>
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
@@ -8,7 +9,7 @@ using namespace cv;
 CDS cds;
 int main(int argc, char *argv[])
 {
-	QCoreApplication a(argc, argv);
+// QCoreApplication a(argc, argv);
 //	Mat inputImage = imread("/Users/SpaceQ/Pictures/Adidas_Logo.jpg",CV_LOAD_IMAGE_GRAYSCALE);
 //	Mat inputImage = imread("/Users/SpaceQ/Pictures/AudiLogo.jpg",CV_LOAD_IMAGE_GRAYSCALE);
 //	Mat testImage = imread("/Users/SpaceQ/Pictures/Adidas_4.jpg",CV_LOAD_IMAGE_GRAYSCALE);
@@ -25,5 +26,7 @@ int main(int argc, char *argv[])
 	ofstream outfile("para.txt");
 	cds.writeParameters(outfile);
 	outfile.close();
-	return a.exec();
+//  return a.exec();
+    return 1;
 }
+*/
