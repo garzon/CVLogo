@@ -119,9 +119,9 @@ template <typename ParamsType>
 void Particle<ParamsType>::calcCost(){
 	ParamsType tmp(position);
 	cost = _costFunc->costFunction(tmp);
-	if (cost<hist_best_cost){
+    if (cost<hist_best_cost || (isnan(cost) && hist_best_cost >= COST_INF * 0.9)){
 		hist_best_position = position.clone();
-		hist_best_cost = cost;
+        if(!isnan(cost))hist_best_cost = cost;
 	}
 }
 

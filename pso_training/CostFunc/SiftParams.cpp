@@ -3,13 +3,13 @@
 const int SiftParams::dimension_of_freedom = 8;
 
 std::vector<std::pair<double, double> > SiftParams::paramRange = {
-		{ 3.0, 100.0 }, // alpha
-		{ 3.0, 100.0 }, // beta
+        { 10.0, 30.0 }, // alpha
+        { 10.0, 30.0 }, // beta
 		{ 0.0, 1.0 },   // tau
-		{ 0.0, 20.0 }, // Nr
+        { 5.0, 20.0 }, // Nr
 		{ 0.0, 1.0 },   // threshold
-		{ 0.0, 0.15 },   // responseThresholdx
-		{ 0.0, 0.15 },   // responseThresholdy
+        { 0.0, 0.1 },   // responseThresholdx
+        { 0.0, 0.1 },   // responseThresholdy
 		{ 0.0, 1.0 }    // rectangleThreshold
 };   
 
