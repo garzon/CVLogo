@@ -6,9 +6,6 @@
 //  Copyright © 2015 FUDAN. All rights reserved.
 //
 
-#include <iostream>
-#include <opencv2/opencv.hpp>
-
 /*
 #include "ViewController.h"
 #include "VideoController.h"
@@ -155,8 +152,14 @@ int main(int argc, char *argv[])
 
 */
 
+#include <iostream>
+#include <opencv2/opencv.hpp>
+#include <curl/curl.h>
+
 using namespace std;
+using namespace cv;
 int main(int argvs,char* argv[]){
-    cout<<"Hello Charming!";
+    cout<<"Hello Charming!"<<endl;
+    cout<<curl_version()<<endl;
     return 0;
 }
