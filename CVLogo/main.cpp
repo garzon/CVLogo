@@ -169,10 +169,12 @@ int main(int argvs,char* argv[]){
     if(curl) {
         curl_easy_setopt(curl, CURLOPT_URL,url);
         /* Now specify the POST data */
-        curl_easy_setopt(curl, CURLOPT_POSTFIELDS, "name=daniel&project=curl");
+        //curl_easy_setopt(curl, CURLOPT_POSTFIELDS, "name=daniel&project=curl");
+        curl_easy_setopt(curl,CURLOPT_HTTPGET,"name=daniel");
         /* Perform the request, res will get the return code */
         //res = curl_easy_perform(curl);
-        curl_easy_perform(curl);
+        res=curl_easy_perform(curl);
+        cout<<endl;
         /* Check for errors */
         if(res != CURLE_OK)
             fprintf(stderr, "curl_easy_perform() failed: %s\n",
