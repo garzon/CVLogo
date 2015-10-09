@@ -1,0 +1,9 @@
+*.exe
+*~
+*.jpg
+*.jpeg
+*.bmp
+*.o
+*.pro.user
+*.pyc
+*.swp
