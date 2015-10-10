@@ -85,6 +85,9 @@
 		BF06FB2B1BBAB22000CC509A /* libopencv_video.2.4.12.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_video.2.4.12.dylib; path = ../../../../../usr/local/Cellar/opencv/2.4.12/lib/libopencv_video.2.4.12.dylib; sourceTree = "<group>"; };
 		BF06FB2C1BBAB22000CC509A /* libopencv_videostab.2.4.12.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_videostab.2.4.12.dylib; path = ../../../../../usr/local/Cellar/opencv/2.4.12/lib/libopencv_videostab.2.4.12.dylib; sourceTree = "<group>"; };
 		BF06FB2F1BBAB23C00CC509A /* libcurl.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcurl.4.dylib; path = ../../../../../usr/local/Cellar/curl/7.44.0/lib/libcurl.4.dylib; sourceTree = "<group>"; };
+		BF28362A1BC92399001ACE25 /* CLM.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = CLM.hpp; path = modules/CLM.hpp; sourceTree = "<group>"; };
+		BF2836301BC924CA001ACE25 /* CMM.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = CMM.hpp; path = modules/CMM.hpp; sourceTree = "<group>"; };
+		BF2836331BC924F6001ACE25 /* MCM.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = MCM.hpp; path = modules/MCM.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +122,7 @@
 		BF06FAC21BBAAF6500CC509A = {
 			isa = PBXGroup;
 			children = (
+				BF2836251BC92005001ACE25 /* modules */,
 				BF06FB0C1BBAB1DC00CC509A /* Library */,
 				BF06FAF21BBAAFD900CC509A /* crawl */,
 				BF06FADF1BBAAFCB00CC509A /* json */,
@@ -207,6 +211,16 @@
 				BF06FB1B1BBAB20A00CC509A /* libopencv_stitching.2.4.12.dylib */,
 			);
 			name = Library;
+			sourceTree = "<group>";
+		};
+		BF2836251BC92005001ACE25 /* modules */ = {
+			isa = PBXGroup;
+			children = (
+				BF2836331BC924F6001ACE25 /* MCM.hpp */,
+				BF28362A1BC92399001ACE25 /* CLM.hpp */,
+				BF2836301BC924CA001ACE25 /* CMM.hpp */,
+			);
+			name = modules;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
