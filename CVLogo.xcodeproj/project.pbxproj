@@ -10,9 +10,6 @@
 		BF06FACF1BBAAF6500CC509A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF06FACE1BBAAF6500CC509A /* main.cpp */; };
 		BF06FADD1BBAAFB600CC509A /* cds.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF06FADA1BBAAFB600CC509A /* cds.cpp */; settings = {ASSET_TAGS = (); }; };
 		BF06FADE1BBAAFB600CC509A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF06FADC1BBAAFB600CC509A /* main.cpp */; settings = {ASSET_TAGS = (); }; };
-		BF06FAEF1BBAAFD600CC509A /* json_reader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF06FAE71BBAAFD600CC509A /* json_reader.cpp */; settings = {ASSET_TAGS = (); }; };
-		BF06FAF01BBAAFD600CC509A /* json_value.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF06FAE81BBAAFD600CC509A /* json_value.cpp */; settings = {ASSET_TAGS = (); }; };
-		BF06FAF11BBAAFD600CC509A /* json_writer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF06FAEA1BBAAFD600CC509A /* json_writer.cpp */; settings = {ASSET_TAGS = (); }; };
 		BF06FB1C1BBAB20A00CC509A /* libopencv_calib3d.2.4.12.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF06FB0D1BBAB20A00CC509A /* libopencv_calib3d.2.4.12.dylib */; settings = {ASSET_TAGS = (); }; };
 		BF06FB1D1BBAB20A00CC509A /* libopencv_contrib.2.4.12.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF06FB0E1BBAB20A00CC509A /* libopencv_contrib.2.4.12.dylib */; settings = {ASSET_TAGS = (); }; };
 		BF06FB1E1BBAB20A00CC509A /* libopencv_core.2.4.12.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF06FB0F1BBAB20A00CC509A /* libopencv_core.2.4.12.dylib */; settings = {ASSET_TAGS = (); }; };
@@ -31,6 +28,9 @@
 		BF06FB2D1BBAB22000CC509A /* libopencv_video.2.4.12.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF06FB2B1BBAB22000CC509A /* libopencv_video.2.4.12.dylib */; settings = {ASSET_TAGS = (); }; };
 		BF06FB2E1BBAB22000CC509A /* libopencv_videostab.2.4.12.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF06FB2C1BBAB22000CC509A /* libopencv_videostab.2.4.12.dylib */; settings = {ASSET_TAGS = (); }; };
 		BF06FB301BBAB23C00CC509A /* libcurl.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF06FB2F1BBAB23C00CC509A /* libcurl.4.dylib */; settings = {ASSET_TAGS = (); }; };
+		BF1F0F381BC9462E0031591E /* moduleControllers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF1F0F371BC9462E0031591E /* moduleControllers.cpp */; settings = {ASSET_TAGS = (); }; };
+		BF3D75851BCA65640080A977 /* NetworkHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF3D75831BCA65640080A977 /* NetworkHandler.cpp */; settings = {ASSET_TAGS = (); }; };
+		BFC94A921BCA9A8700D727D7 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = BFC94A911BCA9A8700D727D7 /* README.md */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -51,22 +51,6 @@
 		BF06FADA1BBAAFB600CC509A /* cds.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = cds.cpp; path = cds/cds.cpp; sourceTree = "<group>"; };
 		BF06FADB1BBAAFB600CC509A /* cds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cds.h; path = cds/cds.h; sourceTree = "<group>"; };
 		BF06FADC1BBAAFB600CC509A /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = cds/main.cpp; sourceTree = "<group>"; };
-		BF06FAE01BBAAFD600CC509A /* autolink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = autolink.h; path = json/autolink.h; sourceTree = "<group>"; };
-		BF06FAE11BBAAFD600CC509A /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = config.h; path = json/config.h; sourceTree = "<group>"; };
-		BF06FAE21BBAAFD600CC509A /* features.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = features.h; path = json/features.h; sourceTree = "<group>"; };
-		BF06FAE31BBAAFD600CC509A /* forwards.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = forwards.h; path = json/forwards.h; sourceTree = "<group>"; };
-		BF06FAE41BBAAFD600CC509A /* json_batchallocator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = json_batchallocator.h; path = json/json_batchallocator.h; sourceTree = "<group>"; };
-		BF06FAE51BBAAFD600CC509A /* json_internalarray.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = json_internalarray.inl; path = json/json_internalarray.inl; sourceTree = "<group>"; };
-		BF06FAE61BBAAFD600CC509A /* json_internalmap.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = json_internalmap.inl; path = json/json_internalmap.inl; sourceTree = "<group>"; };
-		BF06FAE71BBAAFD600CC509A /* json_reader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = json_reader.cpp; path = json/json_reader.cpp; sourceTree = "<group>"; };
-		BF06FAE81BBAAFD600CC509A /* json_value.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = json_value.cpp; path = json/json_value.cpp; sourceTree = "<group>"; };
-		BF06FAE91BBAAFD600CC509A /* json_valueiterator.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = json_valueiterator.inl; path = json/json_valueiterator.inl; sourceTree = "<group>"; };
-		BF06FAEA1BBAAFD600CC509A /* json_writer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = json_writer.cpp; path = json/json_writer.cpp; sourceTree = "<group>"; };
-		BF06FAEB1BBAAFD600CC509A /* json.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = json.h; path = json/json.h; sourceTree = "<group>"; };
-		BF06FAEC1BBAAFD600CC509A /* reader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = reader.h; path = json/reader.h; sourceTree = "<group>"; };
-		BF06FAED1BBAAFD600CC509A /* value.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = value.h; path = json/value.h; sourceTree = "<group>"; };
-		BF06FAEE1BBAAFD600CC509A /* writer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = writer.h; path = json/writer.h; sourceTree = "<group>"; };
-		BF06FAF31BBAAFE600CC509A /* app.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = app.py; path = crawl/app.py; sourceTree = "<group>"; };
 		BF06FB0D1BBAB20A00CC509A /* libopencv_calib3d.2.4.12.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_calib3d.2.4.12.dylib; path = ../../../../../usr/local/Cellar/opencv/2.4.12/lib/libopencv_calib3d.2.4.12.dylib; sourceTree = "<group>"; };
 		BF06FB0E1BBAB20A00CC509A /* libopencv_contrib.2.4.12.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_contrib.2.4.12.dylib; path = ../../../../../usr/local/Cellar/opencv/2.4.12/lib/libopencv_contrib.2.4.12.dylib; sourceTree = "<group>"; };
 		BF06FB0F1BBAB20A00CC509A /* libopencv_core.2.4.12.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_core.2.4.12.dylib; path = ../../../../../usr/local/Cellar/opencv/2.4.12/lib/libopencv_core.2.4.12.dylib; sourceTree = "<group>"; };
@@ -85,9 +69,12 @@
 		BF06FB2B1BBAB22000CC509A /* libopencv_video.2.4.12.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_video.2.4.12.dylib; path = ../../../../../usr/local/Cellar/opencv/2.4.12/lib/libopencv_video.2.4.12.dylib; sourceTree = "<group>"; };
 		BF06FB2C1BBAB22000CC509A /* libopencv_videostab.2.4.12.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_videostab.2.4.12.dylib; path = ../../../../../usr/local/Cellar/opencv/2.4.12/lib/libopencv_videostab.2.4.12.dylib; sourceTree = "<group>"; };
 		BF06FB2F1BBAB23C00CC509A /* libcurl.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcurl.4.dylib; path = ../../../../../usr/local/Cellar/curl/7.44.0/lib/libcurl.4.dylib; sourceTree = "<group>"; };
-		BF28362A1BC92399001ACE25 /* CLM.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = CLM.hpp; path = modules/CLM.hpp; sourceTree = "<group>"; };
-		BF2836301BC924CA001ACE25 /* CMM.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = CMM.hpp; path = modules/CMM.hpp; sourceTree = "<group>"; };
-		BF2836331BC924F6001ACE25 /* MCM.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = MCM.hpp; path = modules/MCM.hpp; sourceTree = "<group>"; };
+		BF1F0F371BC9462E0031591E /* moduleControllers.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = moduleControllers.cpp; sourceTree = "<group>"; };
+		BF2836391BC92FCA001ACE25 /* moduleControllers.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = moduleControllers.hpp; sourceTree = "<group>"; };
+		BF28363B1BC93469001ACE25 /* json.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = json.hpp; path = json/json.hpp; sourceTree = "<group>"; };
+		BF3D75831BCA65640080A977 /* NetworkHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NetworkHandler.cpp; path = json/NetworkHandler.cpp; sourceTree = "<group>"; };
+		BF3D75841BCA65640080A977 /* NetworkHandler.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = NetworkHandler.hpp; path = json/NetworkHandler.hpp; sourceTree = "<group>"; };
+		BFC94A911BCA9A8700D727D7 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = cds/README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,9 +109,7 @@
 		BF06FAC21BBAAF6500CC509A = {
 			isa = PBXGroup;
 			children = (
-				BF2836251BC92005001ACE25 /* modules */,
 				BF06FB0C1BBAB1DC00CC509A /* Library */,
-				BF06FAF21BBAAFD900CC509A /* crawl */,
 				BF06FADF1BBAAFCB00CC509A /* json */,
 				BF06FAD91BBAAF9000CC509A /* cds */,
 				BF06FACD1BBAAF6500CC509A /* CVLogo */,
@@ -143,7 +128,9 @@
 		BF06FACD1BBAAF6500CC509A /* CVLogo */ = {
 			isa = PBXGroup;
 			children = (
+				BF1F0F371BC9462E0031591E /* moduleControllers.cpp */,
 				BF06FACE1BBAAF6500CC509A /* main.cpp */,
+				BF2836391BC92FCA001ACE25 /* moduleControllers.hpp */,
 			);
 			path = CVLogo;
 			sourceTree = "<group>";
@@ -151,6 +138,7 @@
 		BF06FAD91BBAAF9000CC509A /* cds */ = {
 			isa = PBXGroup;
 			children = (
+				BFC94A911BCA9A8700D727D7 /* README.md */,
 				BF06FADA1BBAAFB600CC509A /* cds.cpp */,
 				BF06FADB1BBAAFB600CC509A /* cds.h */,
 				BF06FADC1BBAAFB600CC509A /* main.cpp */,
@@ -161,31 +149,11 @@
 		BF06FADF1BBAAFCB00CC509A /* json */ = {
 			isa = PBXGroup;
 			children = (
-				BF06FAE01BBAAFD600CC509A /* autolink.h */,
-				BF06FAE11BBAAFD600CC509A /* config.h */,
-				BF06FAE21BBAAFD600CC509A /* features.h */,
-				BF06FAE31BBAAFD600CC509A /* forwards.h */,
-				BF06FAE41BBAAFD600CC509A /* json_batchallocator.h */,
-				BF06FAE51BBAAFD600CC509A /* json_internalarray.inl */,
-				BF06FAE61BBAAFD600CC509A /* json_internalmap.inl */,
-				BF06FAE71BBAAFD600CC509A /* json_reader.cpp */,
-				BF06FAE81BBAAFD600CC509A /* json_value.cpp */,
-				BF06FAE91BBAAFD600CC509A /* json_valueiterator.inl */,
-				BF06FAEA1BBAAFD600CC509A /* json_writer.cpp */,
-				BF06FAEB1BBAAFD600CC509A /* json.h */,
-				BF06FAEC1BBAAFD600CC509A /* reader.h */,
-				BF06FAED1BBAAFD600CC509A /* value.h */,
-				BF06FAEE1BBAAFD600CC509A /* writer.h */,
+				BF3D75831BCA65640080A977 /* NetworkHandler.cpp */,
+				BF3D75841BCA65640080A977 /* NetworkHandler.hpp */,
+				BF28363B1BC93469001ACE25 /* json.hpp */,
 			);
 			name = json;
-			sourceTree = "<group>";
-		};
-		BF06FAF21BBAAFD900CC509A /* crawl */ = {
-			isa = PBXGroup;
-			children = (
-				BF06FAF31BBAAFE600CC509A /* app.py */,
-			);
-			name = crawl;
 			sourceTree = "<group>";
 		};
 		BF06FB0C1BBAB1DC00CC509A /* Library */ = {
@@ -211,16 +179,6 @@
 				BF06FB1B1BBAB20A00CC509A /* libopencv_stitching.2.4.12.dylib */,
 			);
 			name = Library;
-			sourceTree = "<group>";
-		};
-		BF2836251BC92005001ACE25 /* modules */ = {
-			isa = PBXGroup;
-			children = (
-				BF2836331BC924F6001ACE25 /* MCM.hpp */,
-				BF28362A1BC92399001ACE25 /* CLM.hpp */,
-				BF2836301BC924CA001ACE25 /* CMM.hpp */,
-			);
-			name = modules;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -279,12 +237,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BF06FAEF1BBAAFD600CC509A /* json_reader.cpp in Sources */,
+				BFC94A921BCA9A8700D727D7 /* README.md in Sources */,
 				BF06FADD1BBAAFB600CC509A /* cds.cpp in Sources */,
-				BF06FAF01BBAAFD600CC509A /* json_value.cpp in Sources */,
 				BF06FACF1BBAAF6500CC509A /* main.cpp in Sources */,
-				BF06FAF11BBAAFD600CC509A /* json_writer.cpp in Sources */,
 				BF06FADE1BBAAFB600CC509A /* main.cpp in Sources */,
+				BF1F0F381BC9462E0031591E /* moduleControllers.cpp in Sources */,
+				BF3D75851BCA65640080A977 /* NetworkHandler.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,7 +286,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -364,6 +322,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = macosx;
 			};
 			name = Release;
