@@ -56,6 +56,8 @@ json configure(string configurePath){
     json configPara=json::parse(s.c_str());
     return configPara;
 }
+
+
 int main(int argvs,char* argv[]){
     
     json config=configure(argv[1]); //load configure file
@@ -67,6 +69,7 @@ int main(int argvs,char* argv[]){
     
     json tags=clm.fetchTag();
     json currentTag;
+    
     int size=tags["list"].size(); // size of the tag array
     int counter=0;
     while(counter<size){
@@ -80,3 +83,22 @@ int main(int argvs,char* argv[]){
     
     return 0;
 }
+
+
+//int main(){
+//    CDS cds;
+//    cv::Mat logo;
+//    cv::Mat image;
+//    logo=cv::imread("./logo.jpeg");
+//    image=cv::imread("./1.jpeg");
+//    cds.setInputImage(logo);
+//    cds.setTestImage(image);
+//    if(cds.process())
+//    {
+//        cout<<"Matched!"<<endl;
+//    }
+//    else{
+//        cout<<"MisMatched!"<<endl;
+//    }
+//    return 0;
+//}
