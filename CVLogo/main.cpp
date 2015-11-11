@@ -64,7 +64,7 @@ int main(int argvs,char* argv[]){
     
     clm.loadURL(config["URL_PATH"].get<string>()); //load URLs
     clm.loadParameter(config["PARA_PATH"].get<string>()); //load parameters
-
+    
     clm.setLogo(); //set the logo
     
     json tags=clm.fetchTag();
@@ -74,9 +74,10 @@ int main(int argvs,char* argv[]){
     int counter=0;
     while(counter<size){
         currentTag=tags["list"][counter];
+        clm.setCurrentLogo(currentTag["logoPath"]);
         clm.cutImage(currentTag["videoPath"],currentTag["resolution"], currentTag["adTime"],currentTag["adLength"],currentTag["adWidth"], currentTag["adX"], currentTag["adY"]);
         if(clm.logoMatch())
-            clm.setMatch(currentTag["filmTagId"]);
+            clm.setMatch(currentTag["filmTagId"],currentTag["logoId"]);
     }
     
     //waitKey();
@@ -84,21 +85,32 @@ int main(int argvs,char* argv[]){
     return 0;
 }
 
-
+//
 //int main(){
-//    CDS cds;
-//    cv::Mat logo;
-//    cv::Mat image;
-//    logo=cv::imread("./logo.jpeg");
-//    image=cv::imread("./1.jpeg");
-//    cds.setInputImage(logo);
-//    cds.setTestImage(image);
-//    if(cds.process())
-//    {
-//        cout<<"Matched!"<<endl;
+//    json test;
+//    string getallfilmtaginfo="http://ivory.edwardchor.com/CVLogo/getallfilmtaginfo.php";
+//    string setmatch="http://ivory.edwardchor.com/CVLogo/setMatch.php?film_tag_id=001&logo_id=001&is_match=001";
+//    string _res;
+//    while(!net::get(setmatch.c_str(), _res)) {
+//        sleep(5);
 //    }
-//    else{
-//        cout<<"MisMatched!"<<endl;
-//    }
+//
+//    cout<<_res<<endl;
+////    json res=json::parse(_res);
+////    
+////    
+////    json tags=res;
+////    json currentTag;
+////    
+////    int size=tags["list"].size(); // size of the tag array
+////    int counter=0;
+////    while(counter++<size){
+////        currentTag=tags["list"][counter];
+////        cout<<currentTag["logoPath"]<<endl;
+////    }
+////    
+////
+////    
+//    waitKey();
 //    return 0;
 //}

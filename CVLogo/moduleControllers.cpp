@@ -114,10 +114,11 @@ json CLM::fetchTag(){
 
 
 
-json CLM::setMatch(string filmTagId){
+json CLM::setMatch(string filmTagId,string logoId){
     string pUrl=URLs["CLM_SET_MATCH_URL"].get<string>();
-    pUrl+="filmtagid="+filmTagId;
-    pUrl+="&logoid="+parameters["logoId"].get<string>();
+    pUrl+="film_tag_id="+filmTagId;
+    pUrl+="&logo_id="+logoId;
+    pUrl+="is_match=001";
     string _res;
     while(!net::get(pUrl.c_str(), _res)) {
         sleep(5);
@@ -149,6 +150,11 @@ void CLM:: cutImage(string videoPath,string resolution,string adTime,string adLe
 
 void CLM::setLogo(){
     logo=cv::imread(parameters["logoPath"]);
+    return;
+}
+
+void CLM::setCurrentLogo(string dir){
+    logo=cv::imread(dir);
     return;
 }
 

@@ -48,8 +48,9 @@ public:
     json fetchTag();
     void cutImage(string videoPath,string resolution,string adTime,string adLength,string adWidth,string adX,string adY);
     void setLogo();
+    void setCurrentLogo(string dir);
     bool logoMatch();
-    json setMatch(string filmTagId);
+    json setMatch(string filmTagId, string logoId);
 };
 
 /* Module of Commodity */
