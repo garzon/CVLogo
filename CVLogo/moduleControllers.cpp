@@ -88,6 +88,8 @@ void CLM:: loadURL(string urlPath){
     ifstream urlFile(urlPath, std::ios::binary);
     string s = string(std::istreambuf_iterator<char>(urlFile),
                       std::istreambuf_iterator<char>());
+    cout<<"json stream under parsing in function loadURL(): "<<s<<endl;
+    
     URLs=json::parse(s.c_str());
     return;
 }
@@ -96,6 +98,9 @@ void CLM:: loadParameter(string parameterPath){
     ifstream paraFile(parameterPath, std::ios::binary);
     string s = string(std::istreambuf_iterator<char>(paraFile),
                       std::istreambuf_iterator<char>());
+    
+    cout<<"json stream under parsing in function loadParameter(): "<<s<<endl;
+    
     parameters=json::parse(s.c_str());
     return;
 }
@@ -108,6 +113,9 @@ json CLM::fetchTag(){
     while(!net::get(pUrl.c_str(), _res)) {
         sleep(5);
     }
+    
+    cout<<"json stream under parsing in function fetchTag(): "<<_res<<endl;
+    
     json res=json::parse(_res);
     return res;
 }
@@ -123,6 +131,10 @@ json CLM::setMatch(string filmTagId,string logoId){
     while(!net::get(pUrl.c_str(), _res)) {
         sleep(5);
     }
+    
+    cout<<"json stream under parsing in function setMatch(): "<<_res<<endl;
+    
+    
     json res=json::parse(_res);
     return res;
 }

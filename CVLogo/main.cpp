@@ -86,31 +86,41 @@ int main(int argvs,char* argv[]){
 }
 
 //
-//int main(){
+//int main(int argvs, char* argv[]){
+//    
 //    json test;
+//    
+//    json config=configure(argv[1]); //load configure file
+//    ifstream urlFile(config["URL_PATH"].get<string>(), std::ios::binary);
+//    string s = string(std::istreambuf_iterator<char>(urlFile),
+//                      std::istreambuf_iterator<char>());
+//    json URLs=json::parse(s.c_str());
+//    
 //    string getallfilmtaginfo="http://ivory.edwardchor.com/CVLogo/getallfilmtaginfo.php";
 //    string setmatch="http://ivory.edwardchor.com/CVLogo/setMatch.php?film_tag_id=001&logo_id=001&is_match=001";
+//   
 //    string _res;
-//    while(!net::get(setmatch.c_str(), _res)) {
+//    cout<<URLs["CLM_FETCH_TAG_URL"]<<endl;
+//    
+//    while(!net::get(URLs["CLM_FETCH_TAG_URL"].get<string>().c_str(), _res)) {
 //        sleep(5);
 //    }
 //
-//    cout<<_res<<endl;
-////    json res=json::parse(_res);
-////    
-////    
-////    json tags=res;
-////    json currentTag;
-////    
-////    int size=tags["list"].size(); // size of the tag array
-////    int counter=0;
-////    while(counter++<size){
-////        currentTag=tags["list"][counter];
-////        cout<<currentTag["logoPath"]<<endl;
-////    }
-////    
-////
-////    
+//    cout<<"the stream fetched:"<<_res<<endl;
+//    json res=json::parse(_res);
+//
+//    json tags=res;
+//    json currentTag;
+//    
+//    int size=tags["list"].size(); // size of the tag array
+//    int counter=0;
+//    cout<<"The size of the fetched list: "<<size<<endl;
+//    while(counter<size){
+//        cout<<"The adUrl of tag indexed of "<<counter<<endl;
+//        currentTag=tags["list"][counter++];
+//        cout<<currentTag["adUrl"]<<endl;
+//    }
+//    
 //    waitKey();
 //    return 0;
 //}
