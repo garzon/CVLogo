@@ -9,10 +9,14 @@
 #ifndef moduleControllers_hpp
 #define moduleControllers_hpp
 
+#include <cstring>
+
 #include "../json/json.hpp"
 #include "../cds/cds.h"
 #include "../json/NetworkHandler.hpp"
 #include "opencv2/opencv.hpp"
+
+#include "unistd.h"
 
 using json = nlohmann::json;
 using namespace std;
